@@ -2,7 +2,7 @@
 
 ## To contribute in project:
 1. Go to designated repository and copy the repository url by clicking `Code`
-![Copy https](copy.png)
+![Copy https](./dev/copy.png)
 2. Open your terminal
 ```
 # Navigate the desired folder for clone repository
@@ -16,7 +16,7 @@ git clone <repository_url>
 # Two ways to upload your code:
 
 ## Main branch coding:
-![Master branch](master_branch.png)
+![Master branch](./dev/master_branch.png)
 The main branch is the central branch where the primary version of the project resides. It is often considered the "production-ready" or "stable" version of the code. When coding directly in the main branch, all changes made to this branch will immediately affect the codebase as a whole. These changes can impact the entire project, including other branches that may later merge with the main branch.
 After making changes to the code:
 ```
@@ -34,7 +34,7 @@ git push
 3. Push your changes to your fork using `git push`.
 
 ## New branch coding (Recommended):
-![New branch](alternate_branch.png)
+![New branch](./dev/alternate_branch.png)
 A branch acts as a separate workspace, allowing you to work on specific features, bug fixes, or experiments without affecting the main branch or other developers’ work. This isolation helps prevent introducing bugs or unfinished code into the main project. Branches also simplify collaboration by enabling multiple developers to work on different tasks simultaneously without interference.
 
 
