@@ -1,0 +1,26 @@
+#admin-navbar {
+    position: sticky;
+    top: 0;
+    padding: 3rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    background-color: cornflowerblue;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+#admin-navbar #links {
+    display: flex;
+}
+
+#admin-navbar a:link,
+#admin-navbar a:active,
+#admin-navbar a:hover,
+#admin-navbar a:visited {
+    margin: 0 2rem;
+    color: whitesmoke;
+    text-decoration: none;
+}

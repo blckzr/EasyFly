@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*,
+*::after,
+*::before {
+    border: none;
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* makes rem and px relatively same (1rem = 1px) */
+html {
+    font-size: 62.5%;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+@media (prefers-reduced-motion: no-preference){
+    html {
+        scroll-behavior: smooth;
+    } 
+}
