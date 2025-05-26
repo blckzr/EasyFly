@@ -1,0 +1,19 @@
+#admin-navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    background-color: cornflowerblue;
+}
+
+#admin-navbar #links {
+    display: flex;
+}
+
+#admin-navbar a:link,
+#admin-navbar a:active,
+#admin-navbar a:hover,
+#admin-navbar a:visited {
+    text-decoration: none;
+}

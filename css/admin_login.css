@@ -11,7 +11,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 form {
@@ -26,13 +26,14 @@ form {
 
 label {
   margin: 1rem 0;
+  color: #aaa;
 }
 
 input {
   width: 100%;
   margin: 0.5rem 0;
   padding: 0.5rem 1rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   border: 1px solid #ddd;
   border-radius: 2rem;
 }
@@ -41,7 +42,7 @@ button {
   width: 66%;
   margin: 1rem auto;
   padding: 1rem 0;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: white;
   background-color: skyblue;
