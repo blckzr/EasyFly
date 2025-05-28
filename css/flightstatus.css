@@ -34,7 +34,7 @@ html {
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: url(/dev/flightstatus.png);
+  background: url('../img/flightstatus.png');
   background-size: cover;
 }
 

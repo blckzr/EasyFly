@@ -39,7 +39,7 @@ html {
   }
   
   .container {
-    background-image: url('/dev/about.png');
+    background-image: url('../img/about.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
