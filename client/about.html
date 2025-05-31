@@ -7,6 +7,14 @@
   <link rel="stylesheet" type="text/css" href="../css/about.css">
 </head>
 <body>
+  <header id="nav-placeholder"></header>
+  <script>
+      fetch("../components/header.html")
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById("nav-placeholder").innerHTML = data;
+          });
+  </script>
   <div class="container">
     <div class="text">
       <h1><span class="blue">“Fly Easy, Book Smarter”</span></h1>
