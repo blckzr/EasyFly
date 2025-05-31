@@ -1,0 +1,125 @@
+*,
+*::after,
+*::before {
+  border: none;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+html {
+  font-size: 62.5%;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('../img/flightstatus.png');
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.flight-checker {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 450px;
+  border: 1px solid hsl(0, 0%, 100%);
+  box-shadow: 0 0 25px hsl(0, 0%, 100%);
+}
+
+h2 {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 28px;  
+}
+
+.container h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color:#003087;
+}
+
+.flight-checker label{
+    font-size: 16px;
+}
+
+.input-group, .output-group {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.input-icon-group {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.input-icon-group input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.input-icon-group input[type="date"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: -30px;
+  background-color: transparent;
+}
+
+.calendar-icon {
+  font-size: 18px;
+  margin-left: -25px;
+  pointer-events: none;
+}
+
+.output-placeholder {
+  margin-top: 5px;
+  height: 30px;
+  background: #f0f0f0;
+  border-radius: 5px;
+}
+
+

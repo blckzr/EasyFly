@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EasyFly - View Bookings</title>
+  <link rel="stylesheet" type="text/css" href="../css/viewbook.css">
+</head>
+<body>
+  <div class="container">
+    <div class="search-bar">
+      <label for="passport">Enter Passport Number:</label>
+      <input type="text" id="passport" placeholder=""/>
+      <button onclick="searchPassport()"><span>&#128269;</span></button>
+    </div>
+
+    <div class="info-box">
+      <div class="info-row">
+        <span><strong>Booking ID:</strong></span><div class="output" id="booking-id"></div>
+      </div>
+      <div class="info-row">
+        <span><strong>Flight Number:</strong></span><div class="output" id="flight-number"></div>
+      </div>
+      <div class="info-row">
+        <span><strong>Departure Date:</strong></span><div class="output" id="departure-date"></div>
+      </div>
+      <div class="info-row">
+        <span><strong>Arrival Date:</span></strong></span><div class="output" id="arrival-date"></div>
+      </div>
+      <div class="info-row">
+        <span><strong>Class:</strong></span><div class="output" id="class"></div>
+      </div>
+      <div class="info-row">
+        <span><strong>Itinerary:</strong></span><div class="output" id="itinerary"></div>
+      </div>
+      <div class="info-row">
+        <span><strong>Passenger Information:</strong></span><div class="output" id="passenger-info"></div>
+      </div>
+      <div class="info-row">
+        <span><strong>Ticket ID(s):</strong></span><div class="output" id="ticket-ids"></div>
+      </div>
+
+      <button class="check-btn" onclick="checkFlightStatus()">Check Flight Status</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
