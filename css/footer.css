@@ -1,0 +1,41 @@
+footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #404040;
+    color: #e5e5e5;
+    font-size: 1.6rem;
+}
+
+footer > div {
+    margin: 2.5rem 15rem;
+}
+
+footer h4 {
+    margin: 1.5rem 0;
+}
+
+footer li {
+    margin: 1rem 0;
+    list-style: none;
+}
+
+footer li > a:link, 
+footer li > a:hover, 
+footer li > a:active,
+footer li > a:visited {
+    color: #e5e5e5;
+    text-decoration: none;
+}
+
+footer li > a:hover {
+    text-decoration: underline;
+}
+
+footer div#company-info > * {
+    margin: 2rem 0;
+}
+
+footer p#copyright {
+    opacity: 50%;
+}
