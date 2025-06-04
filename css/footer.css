@@ -14,7 +14,13 @@ footer > div {
 footer div#link-container {
     display: flex;
     flex-direction: row;
-    gap: 5rem;
+    gap: 2.5rem;
+}
+
+footer div#link-container > div {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
 }
 
 footer h4 {
