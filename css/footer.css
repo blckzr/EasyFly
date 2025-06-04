@@ -11,6 +11,12 @@ footer > div {
     margin: 2.5rem 15rem;
 }
 
+footer div#link-container {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
 footer h4 {
     margin: 1.5rem 0;
 }
