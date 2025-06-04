@@ -8,13 +8,13 @@ footer {
 }
 
 footer > div {
-    margin: 2.5rem 15rem;
+    margin: 2.5rem 10rem;
 }
 
 footer div#link-container {
     display: flex;
     flex-direction: row;
-    background-color: white;
+    gap: 5rem;
 }
 
 footer h4 {
