@@ -7,6 +7,14 @@
   <link rel="stylesheet" type="text/css" href="../css/viewbook.css">
 </head>
 <body>
+  <header id="nav-placeholder"></header>
+  <script>
+      fetch("../components/header.html")
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById("nav-placeholder").innerHTML = data;
+          });
+  </script>
   <div class="container">
     <div class="search-bar">
       <label for="passport">Enter Passport Number:</label>
