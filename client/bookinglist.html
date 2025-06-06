@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Booking List</title>
+
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <link rel="stylesheet" type="text/css" href="../css/header.css">
+  <link rel="stylesheet" type="text/css" href="../css/booking_list.css">
+</head>
+
+<body>
+  <header id="nav-placeholder"></header>
+  <script>
+    fetch('../components/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("nav-placeholder").innerHTML = data;
+      })
+  </script>
+  <div id="background-container"></div>
+  <div id="bookings-list">
+    <h1>My Bookings</h1>
+  </div>
+</body>
+
+</html>

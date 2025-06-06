@@ -1,0 +1,33 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+div#background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+  background: url('../img/viewbook.png') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(.5rem);
+}
+
+div#bookings-list {
+  position: relative;
+  z-index: 1;
+  width: 66dvw;
+  height: 100dvh;
+  padding: 1rem 3rem;
+  background-color: #fff;
+  font-family: "Inter", sans-serif;
+}

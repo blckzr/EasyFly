@@ -5,14 +5,14 @@ header {
     top: 0;
     display: flex;
     justify-content: right;
+    min-width: 100dvw;
     padding: 0;
     background-color: #ffffff;
     border-bottom: 1px solid #f1f5f9;
-    box-shadow: 0 1px 10px #f1f5f9;
     z-index: 999;
 }
 
-header > a {
+header>a {
     font-family: "Inter", sans-serif;
     font-size: 2.25rem;
     font-weight: 600;
