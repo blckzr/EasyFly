@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.table-container {
+  margin-top: 100px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 700px;
+}
+
+th,
+td {
+  padding: 16px 12px;
+  border: 1px solid #aaa;
+  text-align: left;
+}
+
+th {
+  background-color: #ddd;
+  font-weight: bold;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.delete-btn:hover {
+  color: red;
+}
