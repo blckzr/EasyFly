@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyFly - Book a Flight</title>
+  <link rel="stylesheet" href="book.css" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-right">
+      <a href="#home">Home</a>
+      <a href="#" class="active">Book</a>
+      <a href="#">View Bookings</a>
+      <a href="#">About</a>
+    </div>
+    <div class="nav-left">
+      <img src="newlogo.png" alt="EasyFly Logo" class="logo" />
+    </div>
+  </nav>
+
+  <!-- Search Section -->
+  <div class="section" id="search-section">
+    <h3>Select Itinerary & Class</h3>
+    <div class="search-box">
+      <div class="search-options">
+        <label><strong>Itinerary</strong></label><br>
+        <input type="radio" name="itinerary" value="Round Trip" id="round-trip" checked>
+        <label for="round-trip">Round Trip</label><br>
+        <input type="radio" name="itinerary" value="One Way" id="one-way">
+        <label for="one-way">One Way</label><br><br>
+
+        <label><strong>Class</strong></label><br>
+        <input type="radio" name="class" value="Business" id="business">
+        <label for="business">Business</label><br>
+        <input type="radio" name="class" value="Economy" id="economy" checked>
+        <label for="economy">Economy</label>
+      </div>
+
+      <div class="search-fields">
+        <label for="departure-from">Departure From</label>
+        <input type="text" placeholder="Departure From" id="departure-from">
+        <label for="arrival-to">Arrive To</label>
+        <input type="text" placeholder="Arrive To" id="arrival-to">
+        <label for="departure-date">Departure Date</label>
+        <input type="date" id="departure-date">
+        <label for="arrival-date">Arrival Date</label>
+        <input type="date" id="arrival-date">
+        <button onclick="searchFlight()">Search Flight</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flight Section -->
+  <div class="section" id="flight-section" style="display:none">
+    <h3>Select Flights</h3>
+    <div class="flight-box">
+      <p><strong>Flight Number:</strong> EF1234</p>
+      <p>Time: 10:00 AM - 1:00 PM</p>
+      <p>Price: PHP 4999</p>
+      <div class="btn-group">
+        <button onclick="showSection('search-section')">Back</button>
+        <button onclick="showSection('booker-section')">Select</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booker Section -->
+  <div class="section" id="booker-section" style="display:none">
+    <h3>Booker Details</h3>
+    <label for="booker-fn">First Name*</label>
+    <input type="text" placeholder="First Name*" id="booker-fn">
+
+    <label for="booker-ln">Last Name*</label>
+    <input type="text" placeholder="Last Name*" id="booker-ln">
+
+    <label for="booker-email">Email*</label>
+    <input type="email" placeholder="Email*" id="booker-email">
+
+    <label for="booker-tel">Telephone*</label>
+    <input type="tel" placeholder="Telephone*" id="booker-tel">
+
+    <label for="booker-country">Country*</label>
+    <input type="text" placeholder="Country*" id="booker-country">
+
+    <label for="booker-city">City*</label>
+    <input type="text" placeholder="City*" id="booker-city">
+
+    <label for="booker-postal">Postal Code*</label>
+    <input type="text" placeholder="Postal Code*" id="booker-postal">
+
+    <div class="btn-group">
+      <button onclick="showSection('flight-section')">Back</button>
+      <button onclick="showSection('passenger-section')">Add Passenger/s</button>
+      <button onclick="showSection('summary-section'); populateSummary();">Book Without Passengers</button>
+    </div>
+
+    <p style="margin-top:1rem; font-style: italic; color: #ccc;">Or proceed without adding passengers.</p>
+  </div>
+
+  <!-- Passenger Section -->
+  <div class="section" id="passenger-section" style="display:none">
+    <h3>Passenger Information</h3>
+    <div id="passenger-form-container"></div>
+    <button onclick="addPassengerForm()">Add Passenger</button>
+    <div class="btn-group">
+      <button onclick="showSection('booker-section')">Back</button>
+      <button onclick="showSection('summary-section');populateSummary();">Book</button>
+    </div>
+  </div>
+
+  <!-- Summary Section -->
+  <div class="section" id="summary-section" style="display:none">
+    <h3 class="summary-title">Booking Summary</h3>
+    <div class="summary-box">
+      <div class="summary-left">
+        <p><strong>Booking ID:</strong> <span id="booking-id"></span></p>
+        <p><strong>Flight Number:</strong> EF1234</p>
+        <p><strong>Departure Date:</strong> <span id="summary-departure-date"></span></p>
+        <p><strong>Arrival Date:</strong> <span id="summary-arrival-date"></span></p>
+      </div>
+      <div class="summary-right">
+        <p><strong>Class:</strong> <span id="summary-class"></span></p>
+        <p><strong>Itinerary:</strong> <span id="summary-itinerary"></span></p>
+        <p><strong>Passenger Information:</strong> <span id="passenger-names"></span></p>
+        <p><strong>Ticket ID(s):</strong> Will be generated after confirmation.</p>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button onclick="showSection('passenger-section')">Back</button>
+      <button onclick="alert('Booking Confirmed!')">Confirm</button>
+    </div>
+  </div>
+
+  <script src="book.js"></script>
+</body>
+</html>
