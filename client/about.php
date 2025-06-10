@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EasyFly - About</title>
   <link rel="stylesheet" type="text/css" href="../css/about.css">
 </head>
+
 <body>
-  <header id="nav-placeholder"></header>
-  <script>
-      fetch("../components/header.html")
-          .then(response => response.text())
-          .then(data => {
-              document.getElementById("nav-placeholder").innerHTML = data;
-          });
-  </script>
+  <?php
+  $curr_page = 'about'; // Set the current page for active link highlighting 
+  include '../components/header.php';
+  ?>
   <div class="container">
     <div class="text">
       <h1><span class="blue">“Fly Easy, Book Smarter”</span></h1>
@@ -27,5 +25,7 @@
       </div>
     </div>
   </div>
+  <?php include '../components/footer.php'; ?>
 </body>
+
 </html>

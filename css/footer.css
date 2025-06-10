@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.footer {
+    background-color: #000080;
+    color: #eee;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-logo {
+    max-width: 150px; 
+    height: auto;
+    margin-bottom: 10px; 
+}
+
+.footer a {
+    color: #ffcc00;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Container */
+.policy-container {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow-y: auto;
+    max-height: 90vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Show animation */
+.policy-container.show {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Policy Card Styling */
+.policy-card {
+    display: none;
+    width: 100%;
+}
+
+.policy-card h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #002B5B;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.policy-card h3 {
+    font-size: 20px;
+    margin: 25px 0 10px;
+    color: #002B5B;
+    font-weight: 600;
+    border-left: 4px solid #ffcc00;
+    padding-left: 12px;
+}
+
+.policy-card p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Email link styling */
+.policy-card a[href^="mailto:"] {
+    color: #004AAD;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.close-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #ff5e57;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+    background-color: #e04a48;
+}
+/* Responsive */
+@media (max-width: 600px) {
+    .policy-container {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .policy-card h2 {
+        font-size: 22px;
+    }
+
+    .policy-card h3 {
+        font-size: 18px;
+    }
+
+    .policy-card p {
+        font-size: 15px;
+    }
+
+    .close-btn {
+        font-size: 14px;
+        padding: 10px 24px;
+    }
+}
