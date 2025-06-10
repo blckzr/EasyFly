@@ -12,6 +12,7 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
+  background: url('../img/admin_login.jpg') no-repeat center center/cover;
 }
 
 form {
@@ -22,6 +23,7 @@ form {
   flex-direction: column;
   border: 1px solid #ddd;
   border-radius: 1rem;
+  background-color: #FFFFFF;
 }
 
 label {
