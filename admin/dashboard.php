@@ -41,18 +41,18 @@
             </div>
             <div class="info-box info-purple">
                 <h2>Total Passengers</h2>
-                <h1>10238</h1>
+                <h1 id="total-passengers">10238</h1>
             </div>
             <div class="info-box info-green">
                 <h2>Number of Flights</h2>
-                <h1>134</h1>
+                <h1 id="total-flights">134</h1>
             </div>
         </div>
         <div id="graph-table-container">
             <div id="graph-container">
                 <h2>Monthly Passengers</h2>
             </div>
-            <div id="table-container">
+            <div class="table-container">
                 <h2>Flights This Week</h2>
                 <table class="table table-striped fs-4">
                     <thead>
@@ -61,23 +61,22 @@
                             <th scope="col">Flight Number</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="weekly-flights">
+                        <!-- Weekly flights data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-container">
+                <h2>Top Flight Destinations</h2>
+                <table class="table table-striped fs-4">
+                    <thead>
                         <tr>
-                            <td>MON</td>
-                            <td>TKYMNL-1130</td>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Passenger Count</th>
                         </tr>
-                        <tr>
-                            <td>MON</td>
-                            <td>TKYMNL-1130</td>
-                        </tr>
-                        <tr>
-                            <td>MON</td>
-                            <td>TKYMNL-1130</td>
-                        </tr>
-                        <tr>
-                            <td>MON</td>
-                            <td>TKYMNL-1130</td>
-                        </tr>
+                    </thead>
+                    <tbody id="top-destinations">
+                        <!-- Top destinations data will be populated here -->
                     </tbody>
                 </table>
             </div>
@@ -89,7 +88,7 @@
     <!-- D3js for Bar Graph -->
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
-    <script src="../js/admin_dashboard.js"></script>
+    <script src="../js/admin_dashboard.js?v=<?php echo time(); ?>"></script>
 </body>
 
 </html>

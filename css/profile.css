@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+}
+
+div#background {
+    width: 100dvw;
+    height: 100dvh;
+    background: url(../img/bookbg.png) no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(5px);
+    position: fixed;
+    z-index: -1;
+}
+
+div#page {
+    width:66dvw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div#page > * {
+    margin: 1rem 0;
+}
+
+div#page > div.google-profile-details {
+    width: 66%;
+}
+
+div#page > div.google-profile-details > * {
+    margin: 1rem 2rem;
+}
+
+div#page > div.booker-information {
+    width: 66%;
+}
+
+div#page > div.booker-information > * {
+    margin: 1rem 2rem;
+}
+
+div#page > div.google-profile-details h2,
+div#page > div.booker-information h2 {
+    font-size: 2.4rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+p.label {
+    color: #888;
+}
+
+div.profile-container img{
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover; 
+    border-radius: 50%;
+}
+
+div.profile-field {
+    margin: 1rem 4rem !important;
+}
+
+div.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+div.profile-actions button {
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button.edit-profile {
+    background-color: #28a745;
+}
+
+button.edit-profile:hover {
+    background-color: #218838;
+}
+
+button.logout {
+    background-color: #dc3545;
+}
+
+button.logout:hover {
+    background-color: #c82333;
+}
