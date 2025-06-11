@@ -54,9 +54,27 @@ header {
     background: rgba(0, 0, 0, 0.05);
 }
 
-.nav-links a.active {
+a.active {
     background-color: #f0f0f0;
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.right-section a {
+    font-size: 3rem;
+    color: #222;
+    padding: 1rem 2rem;
+    border-radius: 5rem;
+    transition: 0.3s;
+}
+
+.right-section a:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Changed hover color to blue */
 }
 
 .logo {
