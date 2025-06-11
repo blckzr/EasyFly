@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EasyFly</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link rel="stylesheet" type="text/css" href="signin.css">
+  <link rel="stylesheet" type="text/css" href="../css/signin.css">
 
   <script src="googleAPI.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -16,15 +16,15 @@
   <div class="wrapper">
     <!-- Sign In -->
     <div class="form-wrapper sign-in">
-      <form id="signin-form">
+      <form id="signin-form" action="../components/logging.php" method="POST">
         <h3>Sign In for Simplified Booking</h3>
         <div class="input-group">
-          <input type="text" id="signin-username" required>
-          <label>Username</label>
+          <input type="text" id="signin-passport-number" name="passport-number" required>
+          <label>Passport Number</label>
         </div>
         <div class="input-group">
-          <input type="password" id="signin-password" required>
-          <label>Password</label>
+          <input type="date" id="signin-passport-expiry" name="passport-expiry" required>
+          <label>Passport Expiry</label>
         </div>
         <button type="submit">Sign In</button>
 
@@ -54,33 +54,33 @@
 
     <!-- Sign Up -->
     <div class="form-wrapper sign-up">
-      <form id="signup-form">
+      <form id="signup-form" action="../components/logging.php" method="POST">
         <h3>Register to see Amazing Offers!</h3>
         <div class="input-group">
-          <input type="text" id="passport-number" required>
+          <input type="text" id="passport-number" name="passport-number" required>
           <label>Passport Number</label>
         </div>
-        <div class="input-group">
-          <input type="text" id="signup-username" required>
-          <label>Username</label>
-        </div>
-        <div class="input-group">
-          <input type="password" id="signup-password" required>
-          <label>Password</label>
-        </div>
-        <div class="input-group">
-          <input type="password" id="confirm-password" required>
-          <label>Confirm Password</label>
-        </div>
-        
-        <div class="password-strength">
-          <div class="strength-bar">
-            <div class="strength-fill"></div>
+        <div class="input-row">
+          <div class="input-group half">
+            <input type="date" id="passport-expiry" name="passport-expiry" required>
+            <label>Passport Expiry</label>
           </div>
-          <span class="strength-text">Password strength</span>
+          <div class="input-group half">
+            <input type="date" id="birthdate" name="birthdate" required>
+            <label>Birthday</label>
+          </div>
         </div>
-        
-        <button type="submit">Register</button>
+        <div class="input-row">
+          <div class="input-group half">
+            <input type="text" id="first-name" name="first-name" required>
+            <label>First Name</label>
+          </div>
+          <div class="input-group half">
+            <input type="text" id="last-name" name="last-name" required>
+            <label>Last Name</label>
+          </div>
+        </div>
+        <button type="submit" >Register</button>
         <div class="signUp-link">
           <br>
           <p>Already have an account? <a href="#" class="signInBtn-link">Sign In</a></p>
@@ -92,16 +92,6 @@
     <div class="form-wrapper user-details">
       <form id="details-form">
         <h3>Complete Your Profile</h3>
-        <div class="input-row">
-          <div class="input-group half">
-            <input type="text" id="first-name" required>
-            <label>First Name</label>
-          </div>
-          <div class="input-group half">
-            <input type="text" id="last-name" required>
-            <label>Last Name</label>
-          </div>
-        </div>
         <div class="input-group">
           <input type="email" id="email" required>
           <label>Email Address</label>
@@ -138,6 +128,6 @@
     </div>
   </div>
 
-  <script src="signin.js"></script>
+  <script src="../js/signin.js"></script>
 </body>
 </html>

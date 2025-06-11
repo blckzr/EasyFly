@@ -27,22 +27,6 @@ class AuthSystem {
             wrapper.classList.remove('details-active');
         });
 
-        // Form submissions
-        document.getElementById('signin-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.handleSignIn();
-        });
-
-        document.getElementById('signup-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.handleSignUp();
-        });
-
-        document.getElementById('details-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.handleDetailsSubmission();
-        });
-
         // Password strength checker
         document.getElementById('signup-password').addEventListener('input', (e) => {
             this.checkPasswordStrength(e.target.value);
