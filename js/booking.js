@@ -17,47 +17,6 @@ const bookingData = {
   passengers: [],
 }
 
-// Enhanced sample flight data
-const sampleFlights = [
-  {
-    flightNumber: "MNLTKY-1730",
-    airline: "EasyFly Airlines",
-    aircraft: "Boeing 777-300ER",
-    departureTime: "07:30",
-    arrivalTime: "15:45",
-    price: "₱25,500",
-    duration: "3h 15m",
-    baggage: "23kg",
-    meals: "Included",
-    wifi: "Available",
-  },
-  {
-    flightNumber: "MNLTKY-1845",
-    airline: "EasyFly Airlines",
-    aircraft: "Airbus A350-900",
-    departureTime: "12:15",
-    arrivalTime: "20:30",
-    price: "₱28,750",
-    duration: "3h 15m",
-    baggage: "23kg",
-    meals: "Included",
-    wifi: "Available",
-  },
-  {
-    flightNumber: "MNLTKY-2100",
-    airline: "EasyFly Airlines",
-    aircraft: "Boeing 787-9",
-    departureTime: "18:45",
-    arrivalTime: "03:00+1",
-    price: "₱23,200",
-    duration: "3h 15m",
-    baggage: "23kg",
-    meals: "Included",
-    wifi: "Available",
-  },
-]
-
-// Background slideshow
 function initBackgroundSlideshow() {
   setInterval(() => {
     const slides = document.querySelectorAll(".bg-slide")
@@ -67,43 +26,45 @@ function initBackgroundSlideshow() {
   }, 5000)
 }
 
-// Initialize
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize background slideshow
   initBackgroundSlideshow()
 
-  // Set minimum date to today
-  const today = new Date().toISOString().split("T")[0]
-  document.getElementById("departure-date").min = today
-  document.getElementById("return-date").min = today
-
-  // Add event listeners
   document.querySelectorAll('input[name="itinerary"]').forEach((radio) => {
     radio.addEventListener("change", handleItineraryChange)
   })
-
-  // Initialize with first step
+  initFlightSelection()
   showStep(1)
 })
 
+function initFlightSelection() {
+  document.querySelectorAll(".flight-option").forEach((option, index) => {
+    option.addEventListener("click", () => {
+      selectFlight(
+        {
+          index: index,
+          flightNumber: `Flight-${index + 1}`,
+          departureTime: "--:--",
+          arrivalTime: "--:--",
+          price: "Price",
+          duration: "Duration",
+        },
+        option,
+      )
+    })
+  })
+}
+
 function showStep(step) {
-  // Hide all sections
   document.querySelectorAll(".section").forEach((section) => {
     section.classList.remove("active")
   })
 
-  // Show current section
   document.getElementById(`step-${step}`).classList.add("active")
 
-  // Update progress indicator
   updateProgressIndicator(step)
 
   currentStep = step
-
-  // Load flight options when reaching step 2
-  if (step === 2) {
-    loadFlightOptions()
-  }
 }
 
 function updateProgressIndicator(step) {
@@ -139,9 +100,13 @@ function prevStep() {
 function validateCurrentStep() {
   switch (currentStep) {
     case 1:
-      return validateBookingDetails()
-    case 2:
       return validateFlightSelection()
+    case 2:
+      // For booking details, we need to check if return date is needed
+      if (bookingData.itinerary === "ROUND" && !bookingData.returnDate) {
+        bookingData.returnDate = "TBD" // Set a placeholder if not set
+      }
+      return validateBookingDetails()
     case 3:
       return validateBookerDetails()
     case 4:
@@ -151,50 +116,22 @@ function validateCurrentStep() {
   }
 }
 
-function validateBookingDetails() {
-  const departureFrom = document.getElementById("departure-from").value
-  const arrivalTo = document.getElementById("arrival-to").value
-  const departureDate = document.getElementById("departure-date").value
-  const itinerary = document.querySelector('input[name="itinerary"]:checked').value
-  const returnDate = document.getElementById("return-date").value
-
-  if (!departureFrom || !arrivalTo || !departureDate) {
-    alert("Please fill in all required flight details.")
-    return false
-  }
-
-  if (departureFrom === arrivalTo) {
-    alert("Departure and arrival locations cannot be the same.")
-    return false
-  }
-
-  if (itinerary === "ROUND" && !returnDate) {
-    alert("Please select a return date for round trip.")
-    return false
-  }
-
-  if (itinerary === "ROUND" && returnDate && new Date(returnDate) <= new Date(departureDate)) {
-    alert("Return date must be after departure date.")
-    return false
-  }
-
-  // Save data
-  bookingData.itinerary = itinerary
-  bookingData.class = document.querySelector(".class-select").value
-  bookingData.departureFrom = departureFrom
-  bookingData.arrivalTo = arrivalTo
-  bookingData.departureDate = departureDate
-  bookingData.returnDate = returnDate
-
-  return true
-}
-
 function validateFlightSelection() {
   if (!selectedFlight) {
     alert("Please select a flight.")
     return false
   }
+
+  // Save itinerary and class data
+  bookingData.itinerary = document.querySelector('input[name="itinerary"]:checked').value
+  bookingData.class = document.querySelector(".class-select").value
   bookingData.selectedFlight = selectedFlight
+
+  return true
+}
+
+function validateBookingDetails() {
+  // Since fields are auto-filled and disabled, we just return true
   return true
 }
 
@@ -249,81 +186,17 @@ function handleItineraryChange() {
   const itinerary = document.querySelector('input[name="itinerary"]:checked').value
   const returnDateGroup = document.getElementById("return-date-group")
 
+  // Update booking data
+  bookingData.itinerary = itinerary
+
+  // Handle return date visibility in booking details page
   if (itinerary === "ONEWAY") {
     returnDateGroup.classList.add("hidden")
     document.getElementById("return-date").value = ""
+    bookingData.returnDate = ""
   } else {
     returnDateGroup.classList.remove("hidden")
   }
-}
-
-function swapLocations() {
-  const departureSelect = document.getElementById("departure-from")
-  const arrivalSelect = document.getElementById("arrival-to")
-
-  const tempValue = departureSelect.value
-  departureSelect.value = arrivalSelect.value
-  arrivalSelect.value = tempValue
-}
-
-function loadFlightOptions() {
-  const container = document.getElementById("flight-options")
-  container.innerHTML = ""
-
-  sampleFlights.forEach((flight, index) => {
-    const flightOption = document.createElement("div")
-    flightOption.className = "flight-option"
-    flightOption.onclick = () => selectFlight(flight, flightOption)
-
-    flightOption.innerHTML = `
-            <div class="flight-header">
-                <div class="flight-number">${flight.flightNumber}</div>
-                <div class="flight-price">${flight.price}</div>
-            </div>
-            <div class="flight-details">
-                <div class="flight-time">
-                    <div class="time">${flight.departureTime}</div>
-                    <div class="airport">${bookingData.departureFrom}</div>
-                </div>
-                <div class="flight-duration">
-                    <div class="duration-text">${flight.duration}</div>
-                    <div class="duration-display">
-                        <div class="duration-line"></div>
-                        <i class="fas fa-plane duration-plane"></i>
-                        <div class="duration-line"></div>
-                    </div>
-                </div>
-                <div class="flight-time">
-                    <div class="time">${flight.arrivalTime}</div>
-                    <div class="airport">${bookingData.arrivalTo}</div>
-                </div>
-            </div>
-            <div class="flight-info">
-                <div class="info-item">
-                    <i class="fas fa-building"></i>
-                    <span>${flight.airline}</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-plane"></i>
-                    <span>${flight.aircraft}</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-suitcase"></i>
-                    <span>${flight.baggage}</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-utensils"></i>
-                    <span>${flight.meals}</span>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-wifi"></i>
-                    <span>${flight.wifi}</span>
-                </div>
-            </div>
-        `
-
-    container.appendChild(flightOption)
-  })
 }
 
 function selectFlight(flight, element) {
@@ -334,7 +207,14 @@ function selectFlight(flight, element) {
 
   // Select current flight
   element.classList.add("selected")
-  selectedFlight = flight
+  selectedFlight = {
+    index: flight.index,
+    flightNumber: flight.flightNumber,
+    departureTime: flight.departureTime,
+    arrivalTime: flight.arrivalTime,
+    price: flight.price,
+    duration: flight.duration,
+  }
 }
 
 function addPassenger() {
@@ -395,16 +275,16 @@ function populateSummary() {
 
   // Flight details
   document.getElementById("summary-flight-number").textContent = selectedFlight ? selectedFlight.flightNumber : "N/A"
-  document.getElementById("summary-from").textContent = bookingData.departureFrom
-  document.getElementById("summary-to").textContent = bookingData.arrivalTo
-  document.getElementById("summary-departure-date").textContent = bookingData.departureDate
+  document.getElementById("summary-from").textContent = bookingData.departureFrom || "Departure"
+  document.getElementById("summary-to").textContent = bookingData.arrivalTo || "Arrival"
+  document.getElementById("summary-departure-date").textContent = bookingData.departureDate || "TBD"
   document.getElementById("summary-class").textContent = bookingData.class.replace("_", " ")
   document.getElementById("summary-itinerary").textContent = bookingData.itinerary
 
   // Handle return date
   const returnRow = document.getElementById("summary-return-row")
-  if (bookingData.itinerary === "ROUND" && bookingData.returnDate) {
-    document.getElementById("summary-return-date").textContent = bookingData.returnDate
+  if (bookingData.itinerary === "ROUND") {
+    document.getElementById("summary-return-date").textContent = bookingData.returnDate || "TBD"
     returnRow.style.display = "flex"
   } else {
     returnRow.style.display = "none"
@@ -507,11 +387,12 @@ function resetForm() {
   // Reset to step 1
   showStep(1)
 
-  // Clear form data
-  document.getElementById("departure-from").value = ""
-  document.getElementById("arrival-to").value = ""
-  document.getElementById("departure-date").value = ""
-  document.getElementById("return-date").value = ""
+  // Clear selection
+  document.querySelectorAll(".flight-option").forEach((option) => {
+    option.classList.remove("selected")
+  })
+
+  // Reset radio buttons and selects
   document.querySelector('input[name="itinerary"][value="ROUND"]').checked = true
   document.querySelector(".class-select").value = "ECONOMY"
 

@@ -48,57 +48,6 @@ body {
   z-index: -1;
 }
 
-/* Navigation */
-.navbar {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  height: 70px;
-  gap: 2rem;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  height: 40px;
-  width: auto;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
-  padding: 0.5rem 0;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: #2563eb;
-}
-
 /* Progress Steps */
 .progress-container {
   max-width: 1000px;
@@ -136,7 +85,7 @@ body {
   background: #e5e7eb;
   color: #6b7280;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.6rem;
   transition: all 0.3s ease;
 }
 
@@ -152,7 +101,7 @@ body {
 }
 
 .step-text {
-  font-size: 0.85rem;
+  font-size: 1.6rem;
   font-weight: 600;
   text-align: center;
   color: #374151;
@@ -163,7 +112,7 @@ body {
 }
 
 .step-line {
-  display: none; /* Changed from: position: absolute; top: 22px; left: 70%; width: 60%; height: 2px; background: #e5e7eb; z-index: -1; */
+  display: none;
 }
 
 .step:last-child .step-line {
@@ -209,7 +158,7 @@ body {
 
 .section-header h2 {
   color: white;
-  font-size: 2rem;
+  font-size: 3.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -217,7 +166,7 @@ body {
 
 .section-header p {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -300,6 +249,14 @@ body {
   font-weight: 600;
 }
 
+/* Class Selection Section */
+.class-selection-section {
+  margin-bottom: 2rem;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Search Form */
 .search-form {
   max-width: 800px;
@@ -330,7 +287,7 @@ body {
   font-weight: 600;
   color: #374151;
   margin-bottom: 0.5rem;
-  font-size: 0.95rem;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -342,7 +299,7 @@ body {
 }
 
 .field-hint {
-  font-size: 0.8rem;
+  font-size: 1.4rem;
   color: #6b7280;
   font-weight: 400;
   margin-left: 0.5rem;
@@ -353,7 +310,7 @@ body {
   padding: 0.875rem 1rem;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
-  font-size: 1rem;
+  font-size: 1.6rem;
   transition: all 0.3s ease;
   background: white;
   font-weight: 500;
@@ -377,8 +334,29 @@ body {
 }
 
 .location-select {
-  font-size: 1rem;
+  font-size: 1.6rem;
   min-height: 50px;
+}
+
+/* Disabled form elements */
+.form-input:disabled,
+.form-select:disabled,
+.btn-swap:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Form text */
+.form-text {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.text-muted {
+  color: #6b7280;
 }
 
 .swap-button {
@@ -402,7 +380,7 @@ body {
   color: #6b7280;
 }
 
-.btn-swap:hover {
+.btn-swap:hover:not(:disabled) {
   border-color: #2563eb;
   color: #2563eb;
   transform: rotate(180deg);
@@ -418,7 +396,7 @@ body {
   border: none;
   padding: 1rem 3rem;
   border-radius: 12px;
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -446,13 +424,16 @@ body {
 .flight-option {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   border: 2px solid #e5e7eb;
-  border-radius: 20px;
-  padding: 2rem;
-  margin-bottom: 1.5rem;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .flight-option::before {
@@ -491,27 +472,26 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .flight-number {
   font-weight: 700;
   color: #2563eb;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .flight-price {
   font-weight: 700;
   color: #059669;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 .flight-details {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
-  margin-bottom: 1.5rem;
 }
 
 .flight-time {
@@ -520,13 +500,13 @@ body {
 
 .time {
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: #374151;
 }
 
 .airport {
   color: #6b7280;
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   margin-top: 0.25rem;
 }
 
@@ -537,7 +517,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   color: #6b7280;
-  font-size: 0.9rem;
+  font-size: 1.4rem;
 }
 
 .duration-display {
@@ -547,14 +527,14 @@ body {
 }
 
 .duration-line {
-  width: 60px; /* Changed from: width: 30px; */
+  width: 60px;
   height: 1px;
   background: #9ca3af;
 }
 
 .duration-plane {
   color: #2563eb;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
 }
 
 .duration-text {
@@ -574,7 +554,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   color: #6b7280;
 }
 
@@ -602,7 +582,7 @@ body {
 .passenger-title {
   font-weight: 700;
   color: #374151;
-  font-size: 1.1rem;
+  font-size: 1.7rem;
 }
 
 .remove-btn {
@@ -612,7 +592,7 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   transition: background 0.3s ease;
 }
 
@@ -631,7 +611,7 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
   margin-bottom: 2rem;
-  font-size: 1rem;
+  font-size: 1.6rem;
 }
 
 .add-passenger-btn:hover {
@@ -665,11 +645,11 @@ body {
 }
 
 .summary-card-header i {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
 }
 
 .summary-card-header h3 {
-  font-size: 1.1rem;
+  font-size: 1.7rem;
   font-weight: 700;
 }
 
@@ -688,14 +668,14 @@ body {
 
 .booking-id-label {
   display: block;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   opacity: 0.9;
   margin-bottom: 0.25rem;
 }
 
 .booking-id-value {
   display: block;
-  font-size: 1.5rem;
+  font-size: 2.4rem;
   font-weight: 700;
 }
 
@@ -733,7 +713,7 @@ body {
 
 .route-arrow {
   color: #2563eb;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
 }
 
 .flight-details-grid {
@@ -788,7 +768,8 @@ body {
   padding: 0.875rem 2rem;
   border: none;
   border-radius: 12px;
-  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -829,6 +810,15 @@ body {
   background: linear-gradient(135deg, #047857, #059669);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
+}
+
+/* Utility classes */
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.hidden {
+  display: none !important;
 }
 
 /* Responsive Design */
@@ -904,8 +894,4 @@ body {
   .main-container {
     padding: 0 1rem;
   }
-}
-
-.hidden {
-  display: none !important;
 }
