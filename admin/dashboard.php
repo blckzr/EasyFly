@@ -52,7 +52,7 @@
             <div id="graph-container">
                 <h2>Monthly Passengers</h2>
             </div>
-            <div id="table-container">
+            <div class="table-container">
                 <h2>Flights This Week</h2>
                 <table class="table table-striped fs-4">
                     <thead>
@@ -63,6 +63,20 @@
                     </thead>
                     <tbody id="weekly-flights">
                         <!-- Weekly flights data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-container">
+                <h2>Top Flight Destinations</h2>
+                <table class="table table-striped fs-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Passenger Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="top-destinations">
+                        <!-- Top destinations data will be populated here -->
                     </tbody>
                 </table>
             </div>

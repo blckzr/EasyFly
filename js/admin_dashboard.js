@@ -81,3 +81,19 @@ fetch("../admin/dashboard_utils/get_monthly_pass.php")
       .attr("height", (d) => innerHeight - y(d.pass_count))
       .attr("fill", "#60a5fa");
   });
+
+const topDestinations = document.getElementById("top-destinations");
+fetch("../admin/dashboard_utils/get_top_destinations.php")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+
+    data.forEach((destination) => {
+      const destinationElement = document.createElement("tr");
+      destinationElement.innerHTML = `
+            <td>${destination.FlightTo}</td>
+            <td>${destination.count}</td>
+        `;
+      topDestinations.appendChild(destinationElement);
+    });
+  });
