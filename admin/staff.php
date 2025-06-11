@@ -44,6 +44,14 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </button>
   </div>
 <?php endif; ?>
+<?php if (isset($_GET['msg']) && $_GET['msg'] === 'deleted'): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Selected employee(s) deleted successfully.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <?php endif; ?>
   <div class="container-xl">
     <div class="table-responsive">
       <div class="table-wrapper">
@@ -53,7 +61,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <h2>Manage <b>Employees</b></h2>
             </div>
             <div class="col-sm-6">
-              <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+              <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Staff</span></a>
               <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
             </div>
           </div>
@@ -79,7 +87,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <tr>
                 <td>
                   <span class="custom-checkbox">
-                    <input type="checkbox" id="checkbox<?= htmlspecialchars($row['Admin_ID']); ?>" name="options[]" value="<?= htmlspecialchars($row['Admin_ID']); ?>">
+                    <input type="checkbox" class="rowCheckbox" id="checkbox<?= htmlspecialchars($row['Admin_ID']); ?>" name="options[]" value="<?= htmlspecialchars($row['Admin_ID']); ?>">
                     <label for="checkbox<?= htmlspecialchars($row['Admin_ID']); ?>"></label>
                   </span>
                 </td>
@@ -98,10 +106,13 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="clearfix">
           <div class="hint-text">Showing <b><?= min($limit, count($result)) ?></b> out of <b><?= $totalRows ?></b> entries</div>
           <ul class="pagination">
-            <!-- Previous button -->
-            <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
-              <a href="?page=<?= max(1, $page - 1) ?>" class="page-link">Previous</a>
-            </li>
+            <!-- Previous button (only show if not on first page) -->
+            <?php if ($page > 1): ?>
+              <li class="page-item">
+                <a href="?page=<?= $page - 1 ?>" class="page-link">Previous</a>
+              </li>
+            <?php endif; ?>
+
 
             <!-- Page number links -->
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
@@ -164,7 +175,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form action="edit_employee.php" method="POST">
+        <form action="../components/edit_staff.php" method="POST">
           <div class="modal-header">
             <h4 class="modal-title">Edit Employee</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -173,7 +184,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <input type="hidden" name="id" id="edit-id">
             <div class="form-group">
               <label>Admin ID</label>
-              <input type="text" name="admin_id" id="edit-admin-id" class="form-control" required>
+              <input type="text" name="admin_id" id="edit-admin-id" class="form-control">
             </div>
             <div class="form-group">
               <label>First Name</label>
@@ -186,6 +197,18 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="form-group">
               <label>Username</label>
               <input type="text" name="username" id="edit-username" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Old Password</label>
+              <input type="password" name="old_password" id="edit-old-password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>New Password</label>
+              <input type="password" name="new_password" id="edit-new-password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <input type="password" name="confirm_password" id="edit-confirm-password" class="form-control">
             </div>
           </div>
           <div class="modal-footer">
@@ -201,13 +224,13 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form action="delete_employee.php" method="POST">
+        <form action="../components/delete_staff.php" method="POST">
           <div class="modal-header">
             <h4 class="modal-title">Delete Employee</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            <input type="hidden" name="id" id="delete-id">
+            <input type="hidden" name="ids[]" id="delete-id">
             <p>Are you sure you want to delete this record?</p>
             <p class="text-warning"><small>This action cannot be undone.</small></p>
           </div>

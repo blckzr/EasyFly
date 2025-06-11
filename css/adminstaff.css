@@ -16,7 +16,7 @@ body {
 }
 .table-title {        
 	padding-bottom: 15px;
-	background: #435d7d;
+	background: #60a5fa;
 	color: #fff;
 	padding: 16px 30px;
 	min-width: 100%;
@@ -91,7 +91,7 @@ table.table td a.edit {
 	color: #FFC107;
 }
 table.table td a.delete {
-	color: #F44336;
+	color: #FF4775;
 }
 table.table td i {
 	font-size: 19px;
@@ -221,4 +221,4 @@ table.table .avatar {
 }	
 .modal form label {
 	font-weight: normal;
-}	
+}
