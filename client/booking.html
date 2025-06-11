@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Background Slideshow -->
+
     <div class="background-slideshow">
         <div class="bg-slide active" style="background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bookbg-yTtodtOJBvbbS4GUOTsieccHHbLDIs.png')"></div>
         <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
@@ -40,12 +40,12 @@
         <div class="progress-steps">
             <div class="step active" data-step="1">
                 <div class="step-number">1</div>
-                <div class="step-text">Booking Details</div>
+                <div class="step-text">Select Flight</div>
             </div>
             <div class="step-line"></div>
             <div class="step" data-step="2">
                 <div class="step-number">2</div>
-                <div class="step-text">Select Flight</div>
+                <div class="step-text">Booking Details</div>
             </div>
             <div class="step-line"></div>
             <div class="step" data-step="3">
@@ -67,11 +67,11 @@
 
     <!-- Main Content -->
     <div class="main-container">
-        <!-- Step 1: Booking Details -->
+        <!-- Step 1: Select Flight -->
         <div class="section active" id="step-1">
             <div class="section-header">
-                <h2><i class="fas fa-plane"></i> Flight Search</h2>
-                <p>Select your travel preferences</p>
+                <h2><i class="fas fa-plane-departure"></i> Select Flight</h2>
+                <p>Choose your preferred flight</p>
             </div>
             
             <div class="form-container">
@@ -91,6 +91,116 @@
                     </div>
                 </div>
 
+                <!-- Class Selection -->
+                <div class="class-selection-section">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-chair"></i> Class
+                        </label>
+                        <select class="form-select class-select">
+                            <option value="ECONOMY">Economy</option>
+                            <option value="PREMIUM_ECONOMY">Premium Economy</option>
+                            <option value="BUSINESS">Business</option>
+                            <option value="FIRST">First Class</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Flight Options -->
+                <div id="flight-options">
+                    <!-- Sample Flight Cards (Placeholders) -->
+                    <div class="flight-option">
+                        <div class="flight-header">
+                            <div class="flight-number">Flight Number</div>
+                            <div class="flight-price">Price</div>
+                        </div>
+                        <div class="flight-details">
+                            <div class="flight-time">
+                                <div class="time">--:--</div>
+                                <div class="airport">Departure</div>
+                            </div>
+                            <div class="flight-duration">
+                                <div class="duration-text">Duration</div>
+                                <div class="duration-display">
+                                    <div class="duration-line"></div>
+                                    <i class="fas fa-plane duration-plane"></i>
+                                    <div class="duration-line"></div>
+                                </div>
+                            </div>
+                            <div class="flight-time">
+                                <div class="time">--:--</div>
+                                <div class="airport">Arrival</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flight-option">
+                        <div class="flight-header">
+                            <div class="flight-number">Flight Number</div>
+                            <div class="flight-price">Price</div>
+                        </div>
+                        <div class="flight-details">
+                            <div class="flight-time">
+                                <div class="time">--:--</div>
+                                <div class="airport">Departure</div>
+                            </div>
+                            <div class="flight-duration">
+                                <div class="duration-text">Duration</div>
+                                <div class="duration-display">
+                                    <div class="duration-line"></div>
+                                    <i class="fas fa-plane duration-plane"></i>
+                                    <div class="duration-line"></div>
+                                </div>
+                            </div>
+                            <div class="flight-time">
+                                <div class="time">--:--</div>
+                                <div class="airport">Arrival</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flight-option">
+                        <div class="flight-header">
+                            <div class="flight-number">Flight Number</div>
+                            <div class="flight-price">Price</div>
+                        </div>
+                        <div class="flight-details">
+                            <div class="flight-time">
+                                <div class="time">--:--</div>
+                                <div class="airport">Departure</div>
+                            </div>
+                            <div class="flight-duration">
+                                <div class="duration-text">Duration</div>
+                                <div class="duration-display">
+                                    <div class="duration-line"></div>
+                                    <i class="fas fa-plane duration-plane"></i>
+                                    <div class="duration-line"></div>
+                                </div>
+                            </div>
+                            <div class="flight-time">
+                                <div class="time">--:--</div>
+                                <div class="airport">Arrival</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="nextStep()">
+                        Continue <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Booking Details -->
+        <div class="section" id="step-2">
+            <div class="section-header">
+                <h2><i class="fas fa-search"></i> Booking Details</h2>
+                <p>Confirm your travel preferences</p>
+            </div>
+            
+            <div class="form-container">
                 <!-- Main Search Form -->
                 <div class="search-form">
                     <div class="location-row">
@@ -98,54 +208,11 @@
                             <label for="departure-from" class="form-label">
                                 <i class="fas fa-plane-departure"></i> Departure From
                             </label>
-                            <select id="departure-from" class="form-select location-select">
-                                <option value="">Select Departure</option>
-                                <optgroup label="Philippines">
-                                    <option value="Manila (MNL)">Manila (MNL)</option>
-                                    <option value="Cebu (CEB)">Cebu (CEB)</option>
-                                    <option value="Davao (DVO)">Davao (DVO)</option>
-                                    <option value="Clark (CRK)">Clark (CRK)</option>
-                                    <option value="Iloilo (ILO)">Iloilo (ILO)</option>
-                                    <option value="Zamboanga (ZAM)">Zamboanga (ZAM)</option>
-                                    <option value="Puerto Princesa (PPS)">Puerto Princesa (PPS)</option>
-                                    <option value="Tagbilaran (TAG)">Tagbilaran (TAG)</option>
-                                </optgroup>
-                                <optgroup label="Asia">
-                                    <option value="Tokyo (NRT)">Tokyo - Narita (NRT)</option>
-                                    <option value="Osaka (KIX)">Osaka (KIX)</option>
-                                    <option value="Seoul (ICN)">Seoul - Incheon (ICN)</option>
-                                    <option value="Bangkok (BKK)">Bangkok - Suvarnabhumi (BKK)</option>
-                                    <option value="Singapore (SIN)">Singapore Changi (SIN)</option>
-                                    <option value="Hong Kong (HKG)">Hong Kong (HKG)</option>
-                                    <option value="Kuala Lumpur (KUL)">Kuala Lumpur (KUL)</option>
-                                    <option value="Taipei (TPE)">Taipei - Taoyuan (TPE)</option>
-                                </optgroup>
-                                <optgroup label="Middle East">
-                                    <option value="Dubai (DXB)">Dubai (DXB)</option>
-                                    <option value="Doha (DOH)">Doha (DOH)</option>
-                                    <option value="Abu Dhabi (AUH)">Abu Dhabi (AUH)</option>
-                                    <option value="Riyadh (RUH)">Riyadh (RUH)</option>
-                                </optgroup>
-                                <optgroup label="Europe">
-                                    <option value="London (LHR)">London - Heathrow (LHR)</option>
-                                    <option value="Paris (CDG)">Paris - Charles de Gaulle (CDG)</option>
-                                    <option value="Frankfurt (FRA)">Frankfurt (FRA)</option>
-                                    <option value="Amsterdam (AMS)">Amsterdam (AMS)</option>
-                                    <option value="Rome (FCO)">Rome - Fiumicino (FCO)</option>
-                                </optgroup>
-                                <optgroup label="North America">
-                                    <option value="Los Angeles (LAX)">Los Angeles (LAX)</option>
-                                    <option value="San Francisco (SFO)">San Francisco (SFO)</option>
-                                    <option value="New York (JFK)">New York - JFK (JFK)</option>
-                                    <option value="Chicago (ORD)">Chicago - O'Hare (ORD)</option>
-                                    <option value="Toronto (YYZ)">Toronto - Pearson (YYZ)</option>
-                                    <option value="Vancouver (YVR)">Vancouver (YVR)</option>
-                                </optgroup>
-                            </select>
+                            <input type="text" id="departure-from" class="form-input" disabled placeholder="Will be auto-filled">
                         </div>
 
                         <div class="swap-button">
-                            <button type="button" class="btn-swap" onclick="swapLocations()">
+                            <button type="button" class="btn-swap" disabled>
                                 <i class="fas fa-exchange-alt"></i>
                             </button>
                         </div>
@@ -154,50 +221,7 @@
                             <label for="arrival-to" class="form-label">
                                 <i class="fas fa-plane-arrival"></i> Arrive To
                             </label>
-                            <select id="arrival-to" class="form-select location-select">
-                                <option value="">Select Destination</option>
-                                <optgroup label="Philippines">
-                                    <option value="Manila (MNL)">Manila (MNL)</option>
-                                    <option value="Cebu (CEB)">Cebu (CEB)</option>
-                                    <option value="Davao (DVO)">Davao (DVO)</option>
-                                    <option value="Clark (CRK)">Clark (CRK)</option>
-                                    <option value="Iloilo (ILO)">Iloilo (ILO)</option>
-                                    <option value="Zamboanga (ZAM)">Zamboanga (ZAM)</option>
-                                    <option value="Puerto Princesa (PPS)">Puerto Princesa (PPS)</option>
-                                    <option value="Tagbilaran (TAG)">Tagbilaran (TAG)</option>
-                                </optgroup>
-                                <optgroup label="Asia">
-                                    <option value="Tokyo (NRT)">Tokyo - Narita (NRT)</option>
-                                    <option value="Osaka (KIX)">Osaka (KIX)</option>
-                                    <option value="Seoul (ICN)">Seoul - Incheon (ICN)</option>
-                                    <option value="Bangkok (BKK)">Bangkok - Suvarnabhumi (BKK)</option>
-                                    <option value="Singapore (SIN)">Singapore Changi (SIN)</option>
-                                    <option value="Hong Kong (HKG)">Hong Kong (HKG)</option>
-                                    <option value="Kuala Lumpur (KUL)">Kuala Lumpur (KUL)</option>
-                                    <option value="Taipei (TPE)">Taipei - Taoyuan (TPE)</option>
-                                </optgroup>
-                                <optgroup label="Middle East">
-                                    <option value="Dubai (DXB)">Dubai (DXB)</option>
-                                    <option value="Doha (DOH)">Doha (DOH)</option>
-                                    <option value="Abu Dhabi (AUH)">Abu Dhabi (AUH)</option>
-                                    <option value="Riyadh (RUH)">Riyadh (RUH)</option>
-                                </optgroup>
-                                <optgroup label="Europe">
-                                    <option value="London (LHR)">London - Heathrow (LHR)</option>
-                                    <option value="Paris (CDG)">Paris - Charles de Gaulle (CDG)</option>
-                                    <option value="Frankfurt (FRA)">Frankfurt (FRA)</option>
-                                    <option value="Amsterdam (AMS)">Amsterdam (AMS)</option>
-                                    <option value="Rome (FCO)">Rome - Fiumicino (FCO)</option>
-                                </optgroup>
-                                <optgroup label="North America">
-                                    <option value="Los Angeles (LAX)">Los Angeles (LAX)</option>
-                                    <option value="San Francisco (SFO)">San Francisco (SFO)</option>
-                                    <option value="New York (JFK)">New York - JFK (JFK)</option>
-                                    <option value="Chicago (ORD)">Chicago - O'Hare (ORD)</option>
-                                    <option value="Toronto (YYZ)">Toronto - Pearson (YYZ)</option>
-                                    <option value="Vancouver (YVR)">Vancouver (YVR)</option>
-                                </optgroup>
-                            </select>
+                            <input type="text" id="arrival-to" class="form-input" disabled placeholder="Will be auto-filled">
                         </div>
                     </div>
 
@@ -206,53 +230,27 @@
                             <label for="departure-date" class="form-label">
                                 <i class="fas fa-calendar-alt"></i> Departure Date
                             </label>
-                            <input type="date" id="departure-date" class="form-input date-input">
+                            <input type="date" id="departure-date" class="form-input date-input" disabled>
                         </div>
 
                         <div class="form-group" id="return-date-group">
                             <label for="return-date" class="form-label">
                                 <i class="fas fa-calendar-alt"></i> Return Date
                             </label>
-                            <input type="date" id="return-date" class="form-input date-input">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-chair"></i> Class
-                            </label>
-                            <select class="form-select class-select">
-                                <option value="ECONOMY">Economy</option>
-                                <option value="PREMIUM_ECONOMY">Premium Economy</option>
-                                <option value="BUSINESS">Business</option>
-                                <option value="FIRST">First Class</option>
-                            </select>
+                            <input type="date" id="return-date" class="form-input date-input" disabled>
                         </div>
                     </div>
 
                     <div class="search-button-container">
                         <button class="btn btn-search" onclick="nextStep()">
-                            <i class="fas fa-search"></i> Search Flights
+                            <i class="fas fa-check"></i> Confirm Details
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Step 2: Select Flight -->
-        <div class="section" id="step-2">
-            <div class="section-header">
-                <h2><i class="fas fa-plane-departure"></i> Select Flight</h2>
-                <p>Choose your preferred flight</p>
-            </div>
-            
-            <div class="form-container">
-                <div id="flight-options"></div>
-                <div class="button-group">
+                
+                <div class="button-group mt-4">
                     <button class="btn btn-secondary" onclick="prevStep()">
                         <i class="fas fa-arrow-left"></i> Back
-                    </button>
-                    <button class="btn btn-primary" onclick="nextStep()">
-                        Continue <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
@@ -278,7 +276,6 @@
                     <div class="form-group">
                         <label for="booker-passport" class="form-label">
                             Passport Number *
-                            <span class="field-hint">e.g., P2658972A, AB1234567, etc.</span>
                         </label>
                         <input type="text" id="booker-passport" class="form-input" placeholder="e.g., P2658972A">
                     </div>
