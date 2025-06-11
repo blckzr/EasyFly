@@ -12,18 +12,11 @@
   <link rel="stylesheet" href="../css/newhome.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <nav class="navbar">
-      <div class="nav-links">
-        <a href="#" class="active">Home</a>
-        <a href="#">Book</a>
-        <a href="#">View Bookings</a>
-        <a href="#">About</a>
-      </div>
-      <img class="logo" src="../img/newlogo.png" alt="EasyFly Logo">
-    </nav>
-  </header>
+  <?php
+    $curr_page = 'home'; // Set the current page for active link highlighting
+    include '../components/connect.php'; // Include the database connection 
+    include '../components/header.php';
+  ?>
 
   <!-- Hero Section -->
   <section class="hero">
