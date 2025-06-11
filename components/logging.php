@@ -21,7 +21,7 @@ try {
         $_SESSION['birthdate'] = $user['Birthdate'];
         $_SESSION['passport_expiry'] = $user['PassportExpiry'];
 
-        echo "<script>alert('Login successful!'); window.location.href='../client/admin.php';</script>";
+        echo "<script>alert('Login successful!'); window.location.href='../client/index.php';</script>";
     } else {
         echo "<script>alert('Invalid credentials!'); window.location.href='../client/signin.php';</script>";
     }

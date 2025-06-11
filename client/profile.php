@@ -92,7 +92,7 @@
 
         <div class="profile-actions">
             <button class="edit-profile">Edit Profile</button>
-            <button class="logout">Logout</button>
+            <button class="logout" onclick="window.location.href='../components/stop_session.php';">Logout</button>
         </div>
     </div>
 
