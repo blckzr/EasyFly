@@ -1,6 +1,7 @@
-<?php
-// session check
+<?php 
+    include '../components/session_check.php'; 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,23 +46,23 @@
             <h2>Booker Details</h2>
             <div class="profile-field">
                 <p class="label">First name</p>
-                <div class="info"></div>
+                <div class="info"><?php echo isset($_SESSION['first_name']) ? htmlspecialchars($_SESSION['first_name']) : 'N/A'; ?></div>
             </div>
             <div class="profile-field">
                 <p class="label">Last name</p>
-                <div class="info"></div>
+                <div class="info"><?php echo isset($_SESSION['last_name']) ? htmlspecialchars($_SESSION['last_name']) : 'N/A'; ?></div>
             </div>
             <div class="profile-field">
                 <p class="label">Birthdate</p>
-                <div class="info"></div>
+                <div class="info"><?php echo isset($_SESSION['birthdate']) ? htmlspecialchars($_SESSION['birthdate']) : 'N/A'; ?></div>
             </div>
             <div class="profile-field">
                 <p class="label">Passport Number</p>
-                <div class="info"></div>
+                <div class="info"><?php echo isset($_SESSION['passport_number']) ? htmlspecialchars($_SESSION['passport_number']) : 'N/A'; ?></div>
             </div>
             <div class="profile-field">
                 <p class="label">Passport Expiry</p>
-                <div class="info"></div>
+                <div class="info"><?php echo isset($_SESSION['passport_expiry']) ? htmlspecialchars($_SESSION['passport_expiry']) : 'N/A'; ?></div>
             </div>
             <div class="profile-field">
                 <p class="label">Address</p>

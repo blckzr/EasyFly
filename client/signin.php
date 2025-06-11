@@ -19,11 +19,11 @@
       <form id="signin-form" action="../components/logging.php" method="POST">
         <h3>Sign In for Simplified Booking</h3>
         <div class="input-group">
-          <input type="text" id="signin-passport-number" name="passport-number" required>
+          <input type="text" id="signin-passport-number" name="passport_number" required>
           <label>Passport Number</label>
         </div>
         <div class="input-group">
-          <input type="date" id="signin-passport-expiry" name="passport-expiry" required>
+          <input type="date" id="signin-passport-expiry" name="passport_expiry" required>
           <label>Passport Expiry</label>
         </div>
         <button type="submit">Sign In</button>
@@ -54,15 +54,15 @@
 
     <!-- Sign Up -->
     <div class="form-wrapper sign-up">
-      <form id="signup-form" action="../components/logging.php" method="POST">
+      <form id="signup-form" action="../components/register.php" method="POST">
         <h3>Register to see Amazing Offers!</h3>
         <div class="input-group">
-          <input type="text" id="passport-number" name="passport-number" required>
+          <input type="text" id="passport-number" name="passport_number" required>
           <label>Passport Number</label>
         </div>
         <div class="input-row">
           <div class="input-group half">
-            <input type="date" id="passport-expiry" name="passport-expiry" required>
+            <input type="date" id="passport-expiry" name="passport_expiry" required>
             <label>Passport Expiry</label>
           </div>
           <div class="input-group half">
@@ -72,11 +72,11 @@
         </div>
         <div class="input-row">
           <div class="input-group half">
-            <input type="text" id="first-name" name="first-name" required>
+            <input type="text" id="first-name" name="first_name" required>
             <label>First Name</label>
           </div>
           <div class="input-group half">
-            <input type="text" id="last-name" name="last-name" required>
+            <input type="text" id="last-name" name="last_name" required>
             <label>Last Name</label>
           </div>
         </div>

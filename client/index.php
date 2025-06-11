@@ -1,3 +1,10 @@
+<?php
+    $curr_page = 'home'; // Set the current page for active link highlighting
+    include '../components/connect.php'; // Include the database connection 
+    include '../components/header.php';
+    include '../components/session_check.php'; 
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +19,6 @@
   <link rel="stylesheet" href="../css/newhome.css">
 </head>
 <body>
-  <?php
-    $curr_page = 'home'; // Set the current page for active link highlighting
-    include '../components/connect.php'; // Include the database connection 
-    include '../components/header.php';
-  ?>
 
   <!-- Hero Section -->
   <section class="hero">
