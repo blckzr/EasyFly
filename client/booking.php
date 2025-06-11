@@ -1,3 +1,4 @@
+<?php include '../components/connect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EasyFly - Book a Flight</title>
+  <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/booking.css" />
   <link
     rel="stylesheet"
@@ -54,7 +56,7 @@
         <div class="step-number">1</div>
         <div class="step-text">Select Flight</div>
       </div>
-      <div class="step-line"></div>
+      <!-- <div class="step-line"></div>
       <div class="step" data-step="2">
         <div class="step-number">2</div>
         <div class="step-text">Booking Details</div>
@@ -63,17 +65,17 @@
       <div class="step" data-step="3">
         <div class="step-number">3</div>
         <div class="step-text">Booker Details</div>
-      </div>
+      </div> -->
       <div class="step-line"></div>
-      <div class="step" data-step="4">
-        <div class="step-number">4</div>
+      <div class="step" data-step="2">
+        <div class="step-number">2</div>
         <div class="step-text">Passengers</div>
       </div>
-      <div class="step-line"></div>
+      <!-- <div class="step-line"></div>
       <div class="step" data-step="5">
         <div class="step-number">5</div>
         <div class="step-text">Summary</div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -91,12 +93,12 @@
         <div class="trip-type-section">
           <div class="radio-group horizontal">
             <label class="radio-option">
-              <input type="radio" name="itinerary" value="ROUND" checked />
+              <input type="radio" name="itinerary" value="ROUND" />
               <span class="radio-custom"></span>
               <span>Round Trip</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="itinerary" value="ONEWAY" />
+              <input type="radio" name="itinerary" value="ONEWAY" checked />
               <span class="radio-custom"></span>
               <span>One Way</span>
             </label>
@@ -120,81 +122,41 @@
 
         <!-- Flight Options -->
         <div id="flight-options">
-          <!-- Sample Flight Cards (Placeholders) -->
-          <div class="flight-option">
-            <div class="flight-header">
-              <div class="flight-number">Flight Number</div>
-              <div class="flight-price">Price</div>
-            </div>
-            <div class="flight-details">
-              <div class="flight-time">
-                <div class="time">--:--</div>
-                <div class="airport">Departure</div>
+          <?php
+          // Fetch flight data from the database
+          $today = date('Y-m-d');
+          $stmt = $conn->prepare("SELECT FlightNumber, FlightDate, FlightTime, FlightFrom, FlightTo FROM flight_history WHERE FlightDate >= ? ORDER BY FlightDate, FlightTime LIMIT 20");
+          $stmt->execute([$today]);
+          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          ?>
+            <div class="flight-option">
+              <div class="flight-header">
+                <div class="flight-number"><?php echo htmlspecialchars($row['FlightNumber']); ?></div>
+                <div class="flight-price">--</div>
               </div>
-              <div class="flight-duration">
-                <div class="duration-text">Duration</div>
-                <div class="duration-display">
-                  <div class="duration-line"></div>
-                  <i class="fas fa-plane duration-plane"></i>
-                  <div class="duration-line"></div>
+              <div class="flight-details">
+                <div class="flight-time">
+                  <div class="time"><?php echo htmlspecialchars(substr($row['FlightTime'], 0, 5)); ?></div>
+                  <div class="airport"><?php echo htmlspecialchars($row['FlightFrom']); ?></div>
+                </div>
+                <div class="flight-duration">
+                  <div class="duration-text"><?php echo htmlspecialchars($row['FlightDate']); ?></div>
+                  <div class="duration-display">
+                    <div class="duration-line"></div>
+                    <i class="fas fa-plane duration-plane"></i>
+                    <div class="duration-line"></div>
+                  </div>
+                </div>
+                <div class="flight-time">
+                  <div class="time">--:--</div>
+                  <div class="airport"><?php echo htmlspecialchars($row['FlightTo']); ?></div>
                 </div>
               </div>
-              <div class="flight-time">
-                <div class="time">--:--</div>
-                <div class="airport">Arrival</div>
-              </div>
             </div>
-          </div>
+          <?php
+          }
+          ?>
 
-          <div class="flight-option">
-            <div class="flight-header">
-              <div class="flight-number">Flight Number</div>
-              <div class="flight-price">Price</div>
-            </div>
-            <div class="flight-details">
-              <div class="flight-time">
-                <div class="time">--:--</div>
-                <div class="airport">Departure</div>
-              </div>
-              <div class="flight-duration">
-                <div class="duration-text">Duration</div>
-                <div class="duration-display">
-                  <div class="duration-line"></div>
-                  <i class="fas fa-plane duration-plane"></i>
-                  <div class="duration-line"></div>
-                </div>
-              </div>
-              <div class="flight-time">
-                <div class="time">--:--</div>
-                <div class="airport">Arrival</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="flight-option">
-            <div class="flight-header">
-              <div class="flight-number">Flight Number</div>
-              <div class="flight-price">Price</div>
-            </div>
-            <div class="flight-details">
-              <div class="flight-time">
-                <div class="time">--:--</div>
-                <div class="airport">Departure</div>
-              </div>
-              <div class="flight-duration">
-                <div class="duration-text">Duration</div>
-                <div class="duration-display">
-                  <div class="duration-line"></div>
-                  <i class="fas fa-plane duration-plane"></i>
-                  <div class="duration-line"></div>
-                </div>
-              </div>
-              <div class="flight-time">
-                <div class="time">--:--</div>
-                <div class="airport">Arrival</div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="button-group">
