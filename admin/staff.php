@@ -1,13 +1,26 @@
 <?php
-  include '../components/connect.php';
+include '../components/connect.php';
 
-  try {
-    $stmt = $conn->prepare("SELECT * FROM staff");
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  } catch (PDOException $e) {
-    die("Query failed: " . $e->getMessage());
-  }
+// Number of records per page
+$limit = 5;
+
+// Get current page number from URL, default to 1
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
+
+// Calculate offset
+$offset = ($page - 1) * $limit;
+
+// Get total number of records
+$totalStmt = $conn->query("SELECT COUNT(*) FROM staff");
+$totalRows = $totalStmt->fetchColumn();
+$totalPages = ceil($totalRows / $limit);
+
+// Fetch data for current page
+$stmt = $conn->prepare("SELECT * FROM staff LIMIT :limit OFFSET :offset");
+$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +36,14 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <?php if (isset($_GET['status'])): ?>
+  <div class="alert alert-<?php echo $_GET['status'] === 'success' ? 'success' : 'danger'; ?> alert-dismissible fade show" role="alert">
+    <?php echo $_GET['status'] === 'success' ? 'Employee added successfully!' : 'Failed to add employee.'; ?>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<?php endif; ?>
   <div class="container-xl">
     <div class="table-responsive">
       <div class="table-wrapper">
@@ -75,16 +96,25 @@
           </tbody>
         </table>
         <div class="clearfix">
-          <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-            <ul class="pagination">
-              <li class="page-item disabled"><a href="#">Previous</a></li>
-              <li class="page-item"><a href="#" class="page-link">1</a></li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item active"><a href="#" class="page-link">3</a></li>
-              <li class="page-item"><a href="#" class="page-link">4</a></li>
-              <li class="page-item"><a href="#" class="page-link">5</a></li>
-              <li class="page-item"><a href="#" class="page-link">Next</a></li>
-            </ul>
+          <div class="hint-text">Showing <b><?= min($limit, count($result)) ?></b> out of <b><?= $totalRows ?></b> entries</div>
+          <ul class="pagination">
+            <!-- Previous button -->
+            <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+              <a href="?page=<?= max(1, $page - 1) ?>" class="page-link">Previous</a>
+            </li>
+
+            <!-- Page number links -->
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+              <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                <a href="?page=<?= $i ?>" class="page-link"><?= $i ?></a>
+              </li>
+            <?php endfor; ?>
+
+            <!-- Next button -->
+            <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+              <a href="?page=<?= min($totalPages, $page + 1) ?>" class="page-link">Next</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -94,16 +124,12 @@
   <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form action="add_employee.php" method="POST">
+        <form action="../components/add_staff.php" method="POST">
           <div class="modal-header">
             <h4 class="modal-title">Add Employee</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            <div class="form-group">
-              <label>Admin ID</label>
-              <input type="text" name="admin_id" class="form-control" required>
-            </div>
             <div class="form-group">
               <label>First Name</label>
               <input type="text" name="first_name" class="form-control" required>
@@ -115,6 +141,14 @@
             <div class="form-group">
               <label>Username</label>
               <input type="text" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" name="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <input type="password" name="confirm_password" class="form-control" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -186,24 +220,6 @@
     </div>
   </div>
 
-  <script>
-    // Load selected employee data into edit modal
-    $('#editEmployeeModal').on('show.bs.modal', function (event) {
-      const button = $(event.relatedTarget);
-      const id = button.data('id');
-      // TODO: Use AJAX to fetch data from server and fill inputs
-      // Example:
-      // $('#edit-id').val(id);
-      // $('#edit-admin-id').val(...);
-      // $('#edit-first-name').val(...);
-    });
-
-    // Pass selected ID to delete modal
-    $('#deleteEmployeeModal').on('show.bs.modal', function (event) {
-      const button = $(event.relatedTarget);
-      const id = button.data('id');
-      $('#delete-id').val(id);
-    });
-  </script>
+  <script src='../js/staff.js'></script>
 </body>
 </html>
