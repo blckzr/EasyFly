@@ -481,6 +481,10 @@
   </div>
   </div>
 
+  <?php
+  include '../components/footer.php';
+  ?>
+
   <script src="booking.js"></script>
 </body>
 
