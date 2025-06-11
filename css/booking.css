@@ -163,7 +163,7 @@ body {
 }
 
 .step-line {
-  display: none; /* Changed from: position: absolute; top: 22px; left: 70%; width: 60%; height: 2px; background: #e5e7eb; z-index: -1; */
+  display: none;
 }
 
 .step:last-child .step-line {
@@ -300,6 +300,14 @@ body {
   font-weight: 600;
 }
 
+/* Class Selection Section */
+.class-selection-section {
+  margin-bottom: 2rem;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Search Form */
 .search-form {
   max-width: 800px;
@@ -381,6 +389,27 @@ body {
   min-height: 50px;
 }
 
+/* Disabled form elements */
+.form-input:disabled,
+.form-select:disabled,
+.btn-swap:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Form text */
+.form-text {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.text-muted {
+  color: #6b7280;
+}
+
 .swap-button {
   display: flex;
   align-items: center;
@@ -402,7 +431,7 @@ body {
   color: #6b7280;
 }
 
-.btn-swap:hover {
+.btn-swap:hover:not(:disabled) {
   border-color: #2563eb;
   color: #2563eb;
   transform: rotate(180deg);
@@ -446,13 +475,16 @@ body {
 .flight-option {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   border: 2px solid #e5e7eb;
-  border-radius: 20px;
-  padding: 2rem;
-  margin-bottom: 1.5rem;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .flight-option::before {
@@ -491,27 +523,26 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .flight-number {
   font-weight: 700;
   color: #2563eb;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .flight-price {
   font-weight: 700;
   color: #059669;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .flight-details {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
-  margin-bottom: 1.5rem;
 }
 
 .flight-time {
@@ -547,7 +578,7 @@ body {
 }
 
 .duration-line {
-  width: 60px; /* Changed from: width: 30px; */
+  width: 60px;
   height: 1px;
   background: #9ca3af;
 }
@@ -831,6 +862,15 @@ body {
   box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
 }
 
+/* Utility classes */
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .progress-steps {
@@ -904,8 +944,4 @@ body {
   .main-container {
     padding: 0 1rem;
   }
-}
-
-.hidden {
-  display: none !important;
 }
