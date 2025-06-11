@@ -31,27 +31,40 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="../css/adminstaff.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="../css/admin_navbar.css">
+  <link rel="stylesheet" href="../css/main.css">
+
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
   <?php if (isset($_GET['status'])): ?>
-  <div class="alert alert-<?php echo $_GET['status'] === 'success' ? 'success' : 'danger'; ?> alert-dismissible fade show" role="alert">
-    <?php echo $_GET['status'] === 'success' ? 'Employee added successfully!' : 'Failed to add employee.'; ?>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-<?php endif; ?>
-<?php if (isset($_GET['msg']) && $_GET['msg'] === 'deleted'): ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      Selected employee(s) deleted successfully.
+    <div class="alert alert-<?php echo $_GET['status'] === 'success' ? 'success' : 'danger'; ?> alert-dismissible fade show" role="alert">
+      <?php echo $_GET['status'] === 'success' ? 'Employee added successfully!' : 'Failed to add employee.'; ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
   <?php endif; ?>
+  <?php if (isset($_GET['msg']) && $_GET['msg'] === 'deleted'): ?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Selected employee(s) deleted successfully.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  <?php endif; ?>
+
+  <div id="nav-placeholder"></div>
+    <script>
+        fetch("../components/admin_navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("nav-placeholder").innerHTML = data;
+            });
+    </script>
+
   <div class="container-xl">
     <div class="table-responsive">
       <div class="table-wrapper">
