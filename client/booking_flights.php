@@ -27,33 +27,30 @@ if ($itinerary === 'ROUND') {
     $stmt->execute([$today]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
-        <div class="flight-option">
-            <label>
-                <input type="radio" name="flight" value="<?php echo htmlspecialchars($row['OutFlightNumber'] . '|' . $row['RetFlightNumber']); ?>">
-                <div class="flight-header">
-                    <div class="flight-number"><?php echo htmlspecialchars($row['OutFlightNumber']); ?> &rarr; <?php echo htmlspecialchars($row['RetFlightNumber']); ?></div>
-                    <div class="flight-price">--</div>
+        <div class="flight-option" onclick="proceedToPassenger('<?php echo $itinerary; ?>', '<?php echo $row['OutFlightNumber']; ?>', '<?php echo $row['RetFlightNumber']; ?>');">
+            <div class="flight-header">
+                <div class="flight-number"><?php echo htmlspecialchars($row['OutFlightNumber']); ?> &rarr; <?php echo htmlspecialchars($row['RetFlightNumber']); ?></div>
+                <div class="flight-price">--</div>
+            </div>
+            <div class="flight-details">
+                <div class="flight-time">
+                    <div class="time"><?php echo htmlspecialchars(substr($row['OutFlightTime'], 0, 5)); ?></div>
+                    <div class="airport"><?php echo htmlspecialchars($row['OutFlightFrom']); ?></div>
                 </div>
-                <div class="flight-details">
-                    <div class="flight-time">
-                        <div class="time"><?php echo htmlspecialchars(substr($row['OutFlightTime'], 0, 5)); ?></div>
-                        <div class="airport"><?php echo htmlspecialchars($row['OutFlightFrom']); ?></div>
+                <div class="flight-duration">
+                    <div class="duration-text"><?php echo htmlspecialchars($row['OutFlightDate']); ?> (Departure)</div>
+                    <div class="duration-display">
+                        <div class="duration-line"></div>
+                        <i class="fas fa-plane duration-plane"></i>
+                        <div class="duration-line"></div>
                     </div>
-                    <div class="flight-duration">
-                        <div class="duration-text"><?php echo htmlspecialchars($row['OutFlightDate']); ?> (Departure)</div>
-                        <div class="duration-display">
-                            <div class="duration-line"></div>
-                            <i class="fas fa-plane duration-plane"></i>
-                            <div class="duration-line"></div>
-                        </div>
-                        <div class="duration-text"><?php echo htmlspecialchars($row['RetFlightDate']); ?> (Return)</div>
-                    </div>
-                    <div class="flight-time">
-                        <div class="time"><?php echo htmlspecialchars(substr($row['RetFlightTime'], 0, 5)); ?></div>
-                        <div class="airport"><?php echo htmlspecialchars($row['OutFlightTo']); ?></div>
-                    </div>
+                    <div class="duration-text"><?php echo htmlspecialchars($row['RetFlightDate']); ?> (Return)</div>
                 </div>
-            </label>
+                <div class="flight-time">
+                    <div class="time"><?php echo htmlspecialchars(substr($row['RetFlightTime'], 0, 5)); ?></div>
+                    <div class="airport"><?php echo htmlspecialchars($row['OutFlightTo']); ?></div>
+                </div>
+            </div>
         </div>
     <?php
     }
@@ -62,33 +59,31 @@ if ($itinerary === 'ROUND') {
     $stmt->execute([$today]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     ?>
-        <div class="flight-option">
-            <label>
-                <input type="radio" name="flight" value="<?php echo htmlspecialchars($row['FlightNumber']); ?>">
-                <div class="flight-header">
-                    <div class="flight-number"><?php echo htmlspecialchars($row['FlightNumber']); ?></div>
-                    <div class="flight-price">--</div>
+        <div class="flight-option" onclick="proceedToPassenger('<?php echo $itinerary; ?>', '<?php echo $row['FlightNumber']; ?>', null);">
+            <div class="flight-header">
+                <div class="flight-number"><?php echo htmlspecialchars($row['FlightNumber']); ?></div>
+                <div class="flight-price">--</div>
+            </div>
+            <div class="flight-details">
+                <div class="flight-time">
+                    <div class="time"><?php echo htmlspecialchars(substr($row['FlightTime'], 0, 5)); ?></div>
+                    <div class="airport"><?php echo htmlspecialchars($row['FlightFrom']); ?></div>
                 </div>
-                <div class="flight-details">
-                    <div class="flight-time">
-                        <div class="time"><?php echo htmlspecialchars(substr($row['FlightTime'], 0, 5)); ?></div>
-                        <div class="airport"><?php echo htmlspecialchars($row['FlightFrom']); ?></div>
-                    </div>
-                    <div class="flight-duration">
-                        <div class="duration-text"><?php echo htmlspecialchars($row['FlightDate']); ?></div>
-                        <div class="duration-display">
-                            <div class="duration-line"></div>
-                            <i class="fas fa-plane duration-plane"></i>
-                            <div class="duration-line"></div>
-                        </div>
-                    </div>
-                    <div class="flight-time">
-                        <div class="time">--:--</div>
-                        <div class="airport"><?php echo htmlspecialchars($row['FlightTo']); ?></div>
+                <div class="flight-duration">
+                    <div class="duration-text"><?php echo htmlspecialchars($row['FlightDate']); ?></div>
+                    <div class="duration-display">
+                        <div class="duration-line"></div>
+                        <i class="fas fa-plane duration-plane"></i>
+                        <div class="duration-line"></div>
                     </div>
                 </div>
-            </label>
+                <div class="flight-time">
+                    <div class="time">--:--</div>
+                    <div class="airport"><?php echo htmlspecialchars($row['FlightTo']); ?></div>
+                </div>
+            </div>
         </div>
 <?php
     }
 }
+?>

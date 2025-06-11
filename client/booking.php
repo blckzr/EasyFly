@@ -155,7 +155,20 @@
             });
           });
         </script>
+        <script>
+          options = document.querySelectorAll('.flight-option');
 
+          function proceedToPassenger(itinerary, flightNumber, retFlightNumber) {
+            let url = `passenger.php?itinerary=${itinerary}&flightNumber=${flightNumber}`;
+            if (retFlightNumber) {
+              url += `&retFlightNumber=${retFlightNumber}`;
+            }
+            window.location.href = url;
+          }
+          options.forEach(option => {
+            option.addEventListener('click', proceedToPassenger);
+          });
+        </script>
       </div>
     </div>
   </div>
