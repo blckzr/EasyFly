@@ -101,7 +101,7 @@ header {
   align-items: center;
   padding: 100px 10% 60px;
   height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.411), rgba(0, 0, 0, 0.21)), url("./newbg.png") no-repeat center center /
+  background: linear-gradient(rgba(0, 0, 0, 0.411), rgba(0, 0, 0, 0.21)), url("../img/newbg.png") no-repeat center center /
     cover;
   position: relative;
   overflow: hidden;
