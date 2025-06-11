@@ -122,357 +122,350 @@
 
         <!-- Flight Options -->
         <div id="flight-options">
-          <?php
-          // Fetch flight data from the database
-          $today = date('Y-m-d');
-          $stmt = $conn->prepare("SELECT FlightNumber, FlightDate, FlightTime, FlightFrom, FlightTo FROM flight_history WHERE FlightDate >= ? ORDER BY FlightDate, FlightTime LIMIT 20");
-          $stmt->execute([$today]);
-          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-          ?>
-            <div class="flight-option">
-              <div class="flight-header">
-                <div class="flight-number"><?php echo htmlspecialchars($row['FlightNumber']); ?></div>
-                <div class="flight-price">--</div>
-              </div>
-              <div class="flight-details">
-                <div class="flight-time">
-                  <div class="time"><?php echo htmlspecialchars(substr($row['FlightTime'], 0, 5)); ?></div>
-                  <div class="airport"><?php echo htmlspecialchars($row['FlightFrom']); ?></div>
-                </div>
-                <div class="flight-duration">
-                  <div class="duration-text"><?php echo htmlspecialchars($row['FlightDate']); ?></div>
-                  <div class="duration-display">
-                    <div class="duration-line"></div>
-                    <i class="fas fa-plane duration-plane"></i>
-                    <div class="duration-line"></div>
-                  </div>
-                </div>
-                <div class="flight-time">
-                  <div class="time">--:--</div>
-                  <div class="airport"><?php echo htmlspecialchars($row['FlightTo']); ?></div>
-                </div>
-              </div>
-            </div>
-          <?php
+          <div style="padding:1em;text-align:center;">Loading flights...</div>
+          <script>
+            // Initial fetch to load flight options
+            document.addEventListener('DOMContentLoaded', function() {
+              updateFlightOptions('ONEWAY');
+            });
+          </script>
+        </div>
+
+        <script>
+          // Helper to fetch and update flight options
+          function updateFlightOptions(itinerary) {
+            const flightOptionsDiv = document.getElementById('flight-options');
+            flightOptionsDiv.innerHTML = '<div style="padding:1em;text-align:center;">Loading flights...</div>';
+            fetch('booking_flights.php?itinerary=' + encodeURIComponent(itinerary))
+              .then(res => res.text())
+              .then(html => {
+                flightOptionsDiv.innerHTML = html;
+              })
+              .catch(() => {
+                flightOptionsDiv.innerHTML = '<div style="color:red;text-align:center;">Failed to load flights.</div>';
+              });
           }
-          ?>
 
-        </div>
+          // Listen for trip type change
+          document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('input[name="itinerary"]').forEach(function(radio) {
+              radio.addEventListener('change', function() {
+                updateFlightOptions(this.value);
+              });
+            });
+          });
+        </script>
 
-        <div class="button-group">
-          <button class="btn btn-primary" onclick="nextStep()">
-            Continue <i class="fas fa-arrow-right"></i>
-          </button>
-        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Step 2: Booking Details -->
-    <div class="section" id="step-2">
-      <div class="section-header">
-        <h2><i class="fas fa-search"></i> Booking Details</h2>
-        <p>Confirm your travel preferences</p>
-      </div>
-
-      <div class="form-container">
-        <!-- Main Search Form -->
-        <div class="search-form">
-          <div class="location-row">
-            <div class="form-group location-group">
-              <label for="departure-from" class="form-label">
-                <i class="fas fa-plane-departure"></i> Departure From
-              </label>
-              <input
-                type="text"
-                id="departure-from"
-                class="form-input"
-                disabled
-                placeholder="Will be auto-filled" />
-            </div>
-
-            <div class="swap-button">
-              <button type="button" class="btn-swap" disabled>
-                <i class="fas fa-exchange-alt"></i>
-              </button>
-            </div>
-
-            <div class="form-group location-group">
-              <label for="arrival-to" class="form-label">
-                <i class="fas fa-plane-arrival"></i> Arrive To
-              </label>
-              <input
-                type="text"
-                id="arrival-to"
-                class="form-input"
-                disabled
-                placeholder="Will be auto-filled" />
-            </div>
-          </div>
-
-          <div class="date-class-row">
-            <div class="form-group">
-              <label for="departure-date" class="form-label">
-                <i class="fas fa-calendar-alt"></i> Departure Date
-              </label>
-              <input
-                type="date"
-                id="departure-date"
-                class="form-input date-input"
-                disabled />
-            </div>
-
-            <div class="form-group" id="return-date-group">
-              <label for="return-date" class="form-label">
-                <i class="fas fa-calendar-alt"></i> Return Date
-              </label>
-              <input
-                type="date"
-                id="return-date"
-                class="form-input date-input"
-                disabled />
-            </div>
-          </div>
-
-          <div class="search-button-container">
-            <button class="btn btn-search" onclick="nextStep()">
-              <i class="fas fa-check"></i> Confirm Details
-            </button>
-          </div>
-        </div>
-
-        <div class="button-group mt-4">
-          <button class="btn btn-secondary" onclick="prevStep()">
-            <i class="fas fa-arrow-left"></i> Back
-          </button>
-        </div>
-      </div>
+  <!-- Step 2: Booking Details -->
+  <div class="section" id="step-2">
+    <div class="section-header">
+      <h2><i class="fas fa-search"></i> Booking Details</h2>
+      <p>Confirm your travel preferences</p>
     </div>
 
-    <!-- Step 3: Booker Details -->
-    <div class="section" id="step-3">
-      <div class="section-header">
-        <h2><i class="fas fa-user"></i> Booker Details</h2>
-        <p>Enter your personal information</p>
-      </div>
-
-      <div class="form-container">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="booker-fn" class="form-label">First Name *</label>
-            <input
-              type="text"
-              id="booker-fn"
-              class="form-input"
-              placeholder="Enter first name" />
-          </div>
-          <div class="form-group">
-            <label for="booker-ln" class="form-label">Last Name *</label>
-            <input
-              type="text"
-              id="booker-ln"
-              class="form-input"
-              placeholder="Enter last name" />
-          </div>
-          <div class="form-group">
-            <label for="booker-passport" class="form-label">
-              Passport Number *
+    <div class="form-container">
+      <!-- Main Search Form -->
+      <div class="search-form">
+        <div class="location-row">
+          <div class="form-group location-group">
+            <label for="departure-from" class="form-label">
+              <i class="fas fa-plane-departure"></i> Departure From
             </label>
             <input
               type="text"
-              id="booker-passport"
+              id="departure-from"
               class="form-input"
-              placeholder="e.g., P2658972A" />
+              disabled
+              placeholder="Will be auto-filled" />
           </div>
-          <div class="form-group">
-            <label for="booker-email" class="form-label">Email Address *</label>
-            <input
-              type="email"
-              id="booker-email"
-              class="form-input"
-              placeholder="Enter email address" />
+
+          <div class="swap-button">
+            <button type="button" class="btn-swap" disabled>
+              <i class="fas fa-exchange-alt"></i>
+            </button>
           </div>
-          <div class="form-group">
-            <label for="booker-tel" class="form-label">Telephone *</label>
-            <input
-              type="tel"
-              id="booker-tel"
-              class="form-input"
-              placeholder="Enter phone number" />
-          </div>
-          <div class="form-group">
-            <label for="booker-address" class="form-label">Address *</label>
+
+          <div class="form-group location-group">
+            <label for="arrival-to" class="form-label">
+              <i class="fas fa-plane-arrival"></i> Arrive To
+            </label>
             <input
               type="text"
-              id="booker-address"
+              id="arrival-to"
               class="form-input"
-              placeholder="Enter street address" />
-          </div>
-          <div class="form-group">
-            <label for="booker-city" class="form-label">City *</label>
-            <input
-              type="text"
-              id="booker-city"
-              class="form-input"
-              placeholder="Enter city" />
-          </div>
-          <div class="form-group">
-            <label for="booker-postal" class="form-label">Postal Code *</label>
-            <input
-              type="text"
-              id="booker-postal"
-              class="form-input"
-              placeholder="Enter postal code" />
-          </div>
-          <div class="form-group">
-            <label for="booker-country" class="form-label">Country *</label>
-            <input
-              type="text"
-              id="booker-country"
-              class="form-input"
-              placeholder="Enter country" />
+              disabled
+              placeholder="Will be auto-filled" />
           </div>
         </div>
-        <div class="button-group">
-          <button class="btn btn-secondary" onclick="prevStep()">
-            <i class="fas fa-arrow-left"></i> Back
-          </button>
-          <button class="btn btn-primary" onclick="nextStep()">
-            Continue <i class="fas fa-arrow-right"></i>
+
+        <div class="date-class-row">
+          <div class="form-group">
+            <label for="departure-date" class="form-label">
+              <i class="fas fa-calendar-alt"></i> Departure Date
+            </label>
+            <input
+              type="date"
+              id="departure-date"
+              class="form-input date-input"
+              disabled />
+          </div>
+
+          <div class="form-group" id="return-date-group">
+            <label for="return-date" class="form-label">
+              <i class="fas fa-calendar-alt"></i> Return Date
+            </label>
+            <input
+              type="date"
+              id="return-date"
+              class="form-input date-input"
+              disabled />
+          </div>
+        </div>
+
+        <div class="search-button-container">
+          <button class="btn btn-search" onclick="nextStep()">
+            <i class="fas fa-check"></i> Confirm Details
           </button>
         </div>
       </div>
-    </div>
 
-    <!-- Step 4: Passenger Information -->
-    <div class="section" id="step-4">
-      <div class="section-header">
-        <h2><i class="fas fa-users"></i> Passenger Information</h2>
-        <p>Add passenger details (optional)</p>
-      </div>
-
-      <div class="form-container">
-        <div id="passengers-container"></div>
-        <button class="add-passenger-btn" onclick="addPassenger()">
-          <i class="fas fa-plus"></i> Add Passenger
+      <div class="button-group mt-4">
+        <button class="btn btn-secondary" onclick="prevStep()">
+          <i class="fas fa-arrow-left"></i> Back
         </button>
-        <div class="button-group">
-          <button class="btn btn-secondary" onclick="prevStep()">
-            <i class="fas fa-arrow-left"></i> Back
-          </button>
-          <button class="btn btn-primary" onclick="nextStep()">
-            Continue <i class="fas fa-arrow-right"></i>
-          </button>
-        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Step 5: Booking Summary -->
-    <div class="section" id="step-5">
-      <div class="section-header">
-        <h2><i class="fas fa-check-circle"></i> Booking Summary</h2>
-        <p>Review your booking details</p>
+  <!-- Step 3: Booker Details -->
+  <div class="section" id="step-3">
+    <div class="section-header">
+      <h2><i class="fas fa-user"></i> Booker Details</h2>
+      <p>Enter your personal information</p>
+    </div>
+
+    <div class="form-container">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="booker-fn" class="form-label">First Name *</label>
+          <input
+            type="text"
+            id="booker-fn"
+            class="form-input"
+            placeholder="Enter first name" />
+        </div>
+        <div class="form-group">
+          <label for="booker-ln" class="form-label">Last Name *</label>
+          <input
+            type="text"
+            id="booker-ln"
+            class="form-input"
+            placeholder="Enter last name" />
+        </div>
+        <div class="form-group">
+          <label for="booker-passport" class="form-label">
+            Passport Number *
+          </label>
+          <input
+            type="text"
+            id="booker-passport"
+            class="form-input"
+            placeholder="e.g., P2658972A" />
+        </div>
+        <div class="form-group">
+          <label for="booker-email" class="form-label">Email Address *</label>
+          <input
+            type="email"
+            id="booker-email"
+            class="form-input"
+            placeholder="Enter email address" />
+        </div>
+        <div class="form-group">
+          <label for="booker-tel" class="form-label">Telephone *</label>
+          <input
+            type="tel"
+            id="booker-tel"
+            class="form-input"
+            placeholder="Enter phone number" />
+        </div>
+        <div class="form-group">
+          <label for="booker-address" class="form-label">Address *</label>
+          <input
+            type="text"
+            id="booker-address"
+            class="form-input"
+            placeholder="Enter street address" />
+        </div>
+        <div class="form-group">
+          <label for="booker-city" class="form-label">City *</label>
+          <input
+            type="text"
+            id="booker-city"
+            class="form-input"
+            placeholder="Enter city" />
+        </div>
+        <div class="form-group">
+          <label for="booker-postal" class="form-label">Postal Code *</label>
+          <input
+            type="text"
+            id="booker-postal"
+            class="form-input"
+            placeholder="Enter postal code" />
+        </div>
+        <div class="form-group">
+          <label for="booker-country" class="form-label">Country *</label>
+          <input
+            type="text"
+            id="booker-country"
+            class="form-input"
+            placeholder="Enter country" />
+        </div>
       </div>
-
-      <div class="form-container">
-        <div class="summary-container">
-          <div class="summary-card flight-summary">
-            <div class="summary-card-header">
-              <i class="fas fa-plane-departure"></i>
-              <h3>Flight Information</h3>
-            </div>
-            <div class="summary-card-content">
-              <div class="booking-id-badge">
-                <span class="booking-id-label">Booking ID</span>
-                <span class="booking-id-value" id="summary-booking-id"></span>
-              </div>
-              <div class="flight-route">
-                <div class="route-info">
-                  <div class="route-from">
-                    <span class="route-label">From</span>
-                    <span class="route-value" id="summary-from"></span>
-                  </div>
-                  <div class="route-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                  </div>
-                  <div class="route-to">
-                    <span class="route-label">To</span>
-                    <span class="route-value" id="summary-to"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="flight-details-grid">
-                <div class="detail-item">
-                  <i class="fas fa-plane"></i>
-                  <div>
-                    <span class="detail-label">Flight Number</span>
-                    <span
-                      class="detail-value"
-                      id="summary-flight-number"></span>
-                  </div>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-calendar"></i>
-                  <div>
-                    <span class="detail-label">Departure</span>
-                    <span
-                      class="detail-value"
-                      id="summary-departure-date"></span>
-                  </div>
-                </div>
-                <div class="detail-item" id="summary-return-row">
-                  <i class="fas fa-calendar-check"></i>
-                  <div>
-                    <span class="detail-label">Return</span>
-                    <span
-                      class="detail-value"
-                      id="summary-return-date"></span>
-                  </div>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-chair"></i>
-                  <div>
-                    <span class="detail-label">Class</span>
-                    <span class="detail-value" id="summary-class"></span>
-                  </div>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-route"></i>
-                  <div>
-                    <span class="detail-label">Type</span>
-                    <span class="detail-value" id="summary-itinerary"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="summary-card booker-summary">
-            <div class="summary-card-header">
-              <i class="fas fa-user"></i>
-              <h3>Booker Information</h3>
-            </div>
-            <div class="summary-card-content" id="summary-booker"></div>
-          </div>
-
-          <div class="summary-card passengers-summary">
-            <div class="summary-card-header">
-              <i class="fas fa-users"></i>
-              <h3>Passengers</h3>
-            </div>
-            <div class="summary-card-content" id="summary-passengers"></div>
-          </div>
-        </div>
-
-        <div class="button-group">
-          <button class="btn btn-secondary" onclick="prevStep()">
-            <i class="fas fa-arrow-left"></i> Back
-          </button>
-          <button class="btn btn-success" onclick="confirmBooking()">
-            <i class="fas fa-credit-card"></i> Confirm Booking
-          </button>
-        </div>
+      <div class="button-group">
+        <button class="btn btn-secondary" onclick="prevStep()">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button class="btn btn-primary" onclick="nextStep()">
+          Continue <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
     </div>
+  </div>
+
+  <!-- Step 4: Passenger Information -->
+  <div class="section" id="step-4">
+    <div class="section-header">
+      <h2><i class="fas fa-users"></i> Passenger Information</h2>
+      <p>Add passenger details (optional)</p>
+    </div>
+
+    <div class="form-container">
+      <div id="passengers-container"></div>
+      <button class="add-passenger-btn" onclick="addPassenger()">
+        <i class="fas fa-plus"></i> Add Passenger
+      </button>
+      <div class="button-group">
+        <button class="btn btn-secondary" onclick="prevStep()">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button class="btn btn-primary" onclick="nextStep()">
+          Continue <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5: Booking Summary -->
+  <div class="section" id="step-5">
+    <div class="section-header">
+      <h2><i class="fas fa-check-circle"></i> Booking Summary</h2>
+      <p>Review your booking details</p>
+    </div>
+
+    <div class="form-container">
+      <div class="summary-container">
+        <div class="summary-card flight-summary">
+          <div class="summary-card-header">
+            <i class="fas fa-plane-departure"></i>
+            <h3>Flight Information</h3>
+          </div>
+          <div class="summary-card-content">
+            <div class="booking-id-badge">
+              <span class="booking-id-label">Booking ID</span>
+              <span class="booking-id-value" id="summary-booking-id"></span>
+            </div>
+            <div class="flight-route">
+              <div class="route-info">
+                <div class="route-from">
+                  <span class="route-label">From</span>
+                  <span class="route-value" id="summary-from"></span>
+                </div>
+                <div class="route-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="route-to">
+                  <span class="route-label">To</span>
+                  <span class="route-value" id="summary-to"></span>
+                </div>
+              </div>
+            </div>
+            <div class="flight-details-grid">
+              <div class="detail-item">
+                <i class="fas fa-plane"></i>
+                <div>
+                  <span class="detail-label">Flight Number</span>
+                  <span
+                    class="detail-value"
+                    id="summary-flight-number"></span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-calendar"></i>
+                <div>
+                  <span class="detail-label">Departure</span>
+                  <span
+                    class="detail-value"
+                    id="summary-departure-date"></span>
+                </div>
+              </div>
+              <div class="detail-item" id="summary-return-row">
+                <i class="fas fa-calendar-check"></i>
+                <div>
+                  <span class="detail-label">Return</span>
+                  <span
+                    class="detail-value"
+                    id="summary-return-date"></span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-chair"></i>
+                <div>
+                  <span class="detail-label">Class</span>
+                  <span class="detail-value" id="summary-class"></span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-route"></i>
+                <div>
+                  <span class="detail-label">Type</span>
+                  <span class="detail-value" id="summary-itinerary"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-card booker-summary">
+          <div class="summary-card-header">
+            <i class="fas fa-user"></i>
+            <h3>Booker Information</h3>
+          </div>
+          <div class="summary-card-content" id="summary-booker"></div>
+        </div>
+
+        <div class="summary-card passengers-summary">
+          <div class="summary-card-header">
+            <i class="fas fa-users"></i>
+            <h3>Passengers</h3>
+          </div>
+          <div class="summary-card-content" id="summary-passengers"></div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button class="btn btn-secondary" onclick="prevStep()">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button class="btn btn-success" onclick="confirmBooking()">
+          <i class="fas fa-credit-card"></i> Confirm Booking
+        </button>
+      </div>
+    </div>
+  </div>
   </div>
 
   <script src="booking.js"></script>
