@@ -88,8 +88,14 @@
                 <div class="info"></div>
             </div>
         </div>
+
+        <div class="profile-actions">
+            <button class="edit-profile">Edit Profile</button>
+            <button class="logout">Logout</button>
+        </div>
     </div>
-    </div>
+
+
     <?php
     include '../components/footer.php';
     ?>

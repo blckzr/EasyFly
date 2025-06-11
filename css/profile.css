@@ -69,3 +69,36 @@ div.profile-container img{
 div.profile-field {
     margin: 1rem 4rem !important;
 }
+
+div.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+div.profile-actions button {
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button.edit-profile {
+    background-color: #28a745;
+}
+
+button.edit-profile:hover {
+    background-color: #218838;
+}
+
+button.logout {
+    background-color: #dc3545;
+}
+
+button.logout:hover {
+    background-color: #c82333;
+}

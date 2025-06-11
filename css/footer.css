@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-body {
-    padding-bottom: 147px; /* Adjusted for footer height */
-}
-
 .footer {
     background-color: #000080;
     color: #eee;
