@@ -18,7 +18,10 @@
     include '../components/connect.php'; // Include the database connection 
     include '../components/header.php';
     ?>
+    <div id="background"></div>
+    <div id="page">
 
+    </div>
     <?php
     include '../components/footer.php';
     ?>
