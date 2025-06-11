@@ -112,18 +112,28 @@ header {
   text-align: center;
   position: relative;
   z-index: 2;
-  margin-left: auto; /* Changed from margin-left: 10% to push text to rightmost */
-  margin-right: 5%; /* Add some breathing room from the edge */
+  margin-left: auto;
+  margin-right: 5%;
 }
 
 .hero-text h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   color: #000080;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
 
 .hero-text p {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .get-started {
