@@ -49,3 +49,53 @@ document.addEventListener("DOMContentLoaded", () => {
     select.addEventListener("change", filterFlights)
   })
 })
+
+// Edit Modal
+$(document).on('click', '.editBtn', function () {
+    const button = $(this);
+
+    // Get data attributes
+    const flightNumber = button.data('flightnumber');
+    const from = button.data('from');
+    const to = button.data('to');
+    const time = button.data('time');
+    const date = button.data('date');
+
+    // Set values in modal
+    $('#editFlight input[name="originalFlightNumber"]').val(flightNumber);
+    $('#editFlight input[name="flightNumber"]').val(flightNumber);
+    $('#editFlight input[name="from"]').val(from);
+    $('#editFlight input[name="to"]').val(to);
+    $('#editFlight input[name="time"]').val(time);
+    $('#editFlight input[name="date"]').val(date);
+});
+
+// Filter
+document.getElementById('filterBtn').addEventListener('click', function () {
+    const limit = document.getElementById('limitInput').value;
+    const date = document.getElementById('dateFilter').value;
+    const time = document.getElementById('timeFilter').value;
+
+    // Build the query string
+    const query = new URLSearchParams({
+        limit: limit,
+        date_filter: date,
+        time_filter: time
+    });
+
+    // Reload the page with filters as query parameters
+    window.location.href = window.location.pathname + "?" + query.toString();
+});
+
+window.onload = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('date_filter')) {
+            document.getElementById('dateFilter').value = urlParams.get('date_filter');
+        }
+        if (urlParams.get('time_filter')) {
+            document.getElementById('timeFilter').value = urlParams.get('time_filter');
+        }
+        if (urlParams.get('limit')) {
+            document.getElementById('limitInput').value = urlParams.get('limit');
+        }
+    };
