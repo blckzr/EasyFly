@@ -66,6 +66,22 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="table-container">
+                <h2>Weekly Flight Count</h2>
+                <table class="table table-striped fs-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Day</th>
+                            <th scope="col">Flight Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="weekly-flight-count">
+                        <!-- Weekly flight count data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+
             <div class="table-container">
                 <h2>Top Flight Destinations</h2>
                 <table class="table table-striped fs-4">
