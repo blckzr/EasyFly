@@ -1,5 +1,5 @@
 <?php
-    include '../components/admin_session_check.php'; 
+include '../components/admin_session_check.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,11 +31,11 @@
         <div id="infos">
             <div class="info-box info-yellow">
                 <h2>Total Users</h2>
-                <h1>500</h1>
+                <h1 id="total-bookers">500</h1>
             </div>
             <div class="info-box info-blue">
                 <h2>Total Admins</h2>
-                <h1>10</h1>
+                <h1 id=total-staff>10</h1>
             </div>
             <div class="info-box info-purple">
                 <h2>Total Passengers</h2>
