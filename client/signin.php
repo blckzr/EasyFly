@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="../css/signin.css">
 
-  <script src="googleAPI.js"></script>
+  <script src="../js/googleJS.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
@@ -87,46 +87,6 @@
         </div>
       </form>
     </div>
-
-    <!-- User Details -->
-    <div class="form-wrapper user-details">
-      <form id="details-form">
-        <h3>Complete Your Profile</h3>
-        <div class="input-group">
-          <input type="email" id="email" required>
-          <label>Email Address</label>
-        </div>
-        <div class="input-group">
-          <input type="tel" id="telephone" required>
-          <label>Telephone</label>
-        </div>
-        <div class="input-group">
-          <input type="text" id="address" required>
-          <label>Address</label>
-        </div>
-        <div class="input-row">
-          <div class="input-group half">
-            <input type="text" id="postal-code" required>
-            <label>Postal Code</label>
-          </div>
-          <div class="input-group half">
-            <input type="text" id="city" required>
-            <label>City</label>
-          </div>
-        </div>
-        <div class="input-group">
-          <input type="text" id="country" required>
-          <label>Country</label>
-        </div>
-        <button type="submit">Complete Registration</button>
-        <div class="proceed-section">
-          <button type="button" id="proceed-btn" class="proceed-button" style="display: none;">
-            Would you like to proceed?
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <script src="../js/signin.js"></script>
 </body>

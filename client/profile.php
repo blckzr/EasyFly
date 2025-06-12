@@ -36,15 +36,15 @@
             <h2>Google Profile Details</h2>
             <div class="profile-field">
                 <p class="label">Given Name</p>
-                <div class="info"><?php echo isset($_SESSION['given_name']) ? htmlspecialchars($_SESSION['given_name']) : 'N/A'; ?></div>
+                <div class="info"><?php echo isset($_SESSION['google_firstName']) ? htmlspecialchars($_SESSION['google_firstName']) : 'N/A'; ?></div>
             </div>
             <div class="profile-field">
                 <p class="label">Family Name</p>
-                <div class="info"><?php echo isset($_SESSION['family_name']) ? htmlspecialchars($_SESSION['family_name']) : 'N/A'; ?></div>
+                <div class="info"><?php echo isset($_SESSION['google_lastName']) ? htmlspecialchars($_SESSION['google_lastName']) : 'N/A'; ?></div>
             </div>
             <div class="profile-field">
                 <p class="label">Email</p>
-                <div class="info"><?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : 'N/A'; ?></div>
+                <div class="info"><?php echo isset($_SESSION['google_email']) ? htmlspecialchars($_SESSION['google_email']) : 'N/A'; ?></div>
             </div>
         </div>
         <div class="booker-information">
