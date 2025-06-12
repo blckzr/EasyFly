@@ -97,3 +97,19 @@ fetch("../admin/dashboard_utils/get_top_destinations.php")
       topDestinations.appendChild(destinationElement);
     });
   });
+
+const topBookers = document.getElementById("top-bookers");
+fetch("../admin/dashboard_utils/get_top_booker.php")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+
+    data.forEach((booker) => {
+      const bookerElement = document.createElement("tr");
+      bookerElement.innerHTML = `
+      <td>${booker.PassportNumber}</td>
+      <td>${booker.total_bookings}</td?
+    `;
+      topBookers.appendChild(bookerElement);
+    });
+  });

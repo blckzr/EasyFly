@@ -80,6 +80,21 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="table-container">
+                <h2>Top Flight Bookers</h2>
+                <table class="table table-striped fs-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Number</th>
+                            <th scope="col">Booking Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="top-bookers">
+                        <!-- Top bookers data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
