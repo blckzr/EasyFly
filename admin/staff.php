@@ -1,5 +1,6 @@
 <?php
 include '../components/connect.php';
+include '../components/admin_session_check.php';
 
 // Number of records per page
 $limit = 5;

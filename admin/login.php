@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <form action="" method="POST">
+  <form action="../components/admin_logging.php" method="POST">
     <h1>Login</h1>
     <label for="username">
       Username<br>

@@ -1,5 +1,6 @@
 <?php
 include '../components/connect.php';
+include '../components/admin_session_check.php';
 
 $defaultLimit = 10;
 $limit = isset($_GET['limit']) && is_numeric($_GET['limit']) ? (int) $_GET['limit'] : $defaultLimit;

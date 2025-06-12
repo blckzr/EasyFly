@@ -1,4 +1,7 @@
-<?php include '../components/connect.php'; ?>
+<?php 
+  include '../components/connect.php'; 
+  include '../components/session_check.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 

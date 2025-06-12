@@ -1,5 +1,5 @@
 <?php
-include '../components/session_check.php'; // Ensure user is logged in
+    include '../components/session_check.php'; // Ensure user is logged in
 ?>
 
 <!DOCTYPE html>

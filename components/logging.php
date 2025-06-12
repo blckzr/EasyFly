@@ -42,7 +42,7 @@ try {
             $_SESSION['country'] = $booker['Country'];
         }
 
-        echo "<script>alert('Login successful!'); window.location.href='../client/index.php';</script>";
+        echo "<script>window.location.href='../client/index.php';</script>";
     } else {
         echo "<script>alert('Invalid credentials!'); window.location.href='../client/signin.php';</script>";
     }

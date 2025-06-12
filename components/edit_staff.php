@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../components/connect.php'; // Make sure this sets up $conn as a PDO instance
 
 // Get form inputs
@@ -55,9 +56,28 @@ if ($updatePassword) {
     $success = $stmt->execute([$firstName, $lastName, $username, $adminID]);
 }
 
-// Step 4: Notify result
+// Step 4: Set Session
+try {
+    // Fetch user by username
+    $sql = "SELECT * FROM staff WHERE Username = :username";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':username', $username);
+    $stmt->execute();
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $_SESSION['admin_id'] = $user['Admin_ID'];
+    $_SESSION['first_name'] = $user['First_Name'];
+    $_SESSION['last_name'] = $user['Last_Name'];
+    $_SESSION['username'] = $user['Username'];
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+// Step 5: Notify result
 if ($success) {
-    echo "<script>alert('Employee updated successfully.'); window.location.href='staff.php';</script>";
+    echo "<script>alert('Employee updated successfully.'); window.location.href='../admin/staff.php';</script>";
 } else {
     echo "<script>alert('Error updating employee.'); window.history.back();</script>";
 }

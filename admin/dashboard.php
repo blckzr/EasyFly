@@ -1,7 +1,5 @@
 <?php
-
-// Add session checking here (wala pa table for admins)
-
+    include '../components/admin_session_check.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
