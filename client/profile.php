@@ -1,5 +1,5 @@
-<?php 
-    include '../components/session_check.php'; 
+<?php
+include '../components/session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,6 @@
     <div id="background"></div>
     <div id="page">
         <h1>Profile</h1>
-        <!-- Balak ko kukunin ko lang (pic(optional), given name, family name, gmail) -->
         <div class="profile-container">
             <img src="../img/Default_pfp.jpg" alt="Profile Picture">
         </div>
@@ -96,9 +95,9 @@
         </div>
 
         <div class="profile-actions">
-            <button 
-                class="edit-profile" 
-                data-toggle="modal" 
+            <button
+                class="edit-profile"
+                data-toggle="modal"
                 href="#editProfile"
                 data-passport-number="<?php echo $_SESSION['passport_number'] ?? ''; ?>"
                 data-passport-expiry="<?php echo $_SESSION['passport_expiry'] ?? ''; ?>"
@@ -110,89 +109,88 @@
                 data-address="<?php echo $_SESSION['address'] ?? ''; ?>"
                 data-city="<?php echo $_SESSION['city'] ?? ''; ?>"
                 data-country="<?php echo $_SESSION['country'] ?? ''; ?>"
-                data-postal-code="<?php echo $_SESSION['postal_code'] ?? ''; ?>"
-            >Edit Profile
+                data-postal-code="<?php echo $_SESSION['postal_code'] ?? ''; ?>">Edit Profile
             </button>
             <button class="logout" onclick="window.location.href='../components/stop_session.php';">Logout</button>
         </div>
     </div>
 
     <!-- Edit Profile Modal -->
-        <div id="editProfile" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="../components/profiling.php" method="POST">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Edit Profile</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label class="form-label">Passport Number</label>
-                                    <input type="text" class="form-control" id="passport_number" name="passport_number">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Passport Expiry</label>
-                                    <input type="date" class="form-control" id="passport_expiry" name="passport_expiry">
-                                </div>
+    <div id="editProfile" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="../components/profiling.php" method="POST">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Profile</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Passport Number</label>
+                                <input type="text" class="form-control" id="passport_number" name="passport_number">
                             </div>
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name">
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label class="form-label">Birthdate</label>
-                                    <input type="date" class="form-control" id="birth_date" name="birth_date">
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label class="form-label">Telephone</label>
-                                    <input type="text" class="form-control" id="telephone" name="telephone">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Email</label>
-                                    <input type="text" class="form-control" id="email" name="email">
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-12">
-                                    <label class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="address" name="address">
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-4">
-                                    <label class="form-label">City</label>
-                                    <input type="text" class="form-control" id="city" name="city">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Country</label>
-                                    <input type="text" class="form-control" id="country" name="country">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Postal Code</label>
-                                    <input type="text" class="form-control" id="postal_code" name="postal_code">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 text-end">
-                                    <button type="submit" name="action" value="save" class="btn btn-primary">Save</button>
-                                </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Passport Expiry</label>
+                                <input type="date" class="form-control" id="passport_expiry" name="passport_expiry">
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Birthdate</label>
+                                <input type="date" class="form-control" id="birth_date" name="birth_date">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Telephone</label>
+                                <input type="text" class="form-control" id="telephone" name="telephone">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="text" class="form-control" id="email" name="email">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" name="city">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Country</label>
+                                <input type="text" class="form-control" id="country" name="country">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Postal Code</label>
+                                <input type="text" class="form-control" id="postal_code" name="postal_code">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-end">
+                                <button type="submit" name="action" value="save" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
     <?php
     include '../components/footer.php';

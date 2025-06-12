@@ -1,3 +1,19 @@
+const totBookers = document.getElementById("total-bookers");
+fetch("../admin/dashboard_utils/get_tot_bookers.php")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    totBookers.textContent = data.total_bookers;
+  });
+
+const totStaff = document.getElementById("total-staff");
+fetch("../admin/dashboard_utils/get_tot_staff.php")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    totStaff.textContent = data.total_staff;
+  });
+
 const totPassengers = document.getElementById("total-passengers");
 fetch("../admin/dashboard_utils/get_tot_pass.php")
   .then((response) => response.json())
