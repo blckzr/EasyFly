@@ -6,6 +6,7 @@ $passport_expiry = $_POST['passport_expiry'] ?? '';
 $birthdate = $_POST['birthdate'] ?? '';
 $first_name = $_POST['first_name'] ?? '';
 $last_name = $_POST['last_name'] ?? '';
+$google_email = $_POST['email'] ?? '';
 
 try {
     // Check if passport already exists
@@ -34,10 +35,22 @@ try {
     $passportStmt->execute();
 
     // Insert into booker table (only passport_number)
-    $insertBookerSql = "INSERT INTO booker (PassportNumber) VALUES (:passport_number)";
-    $bookerStmt = $conn->prepare($insertBookerSql);
-    $bookerStmt->bindParam(':passport_number', $passport_number);
-    $bookerStmt->execute();
+    // Insert into booker table
+    if ($google_email) {
+        // If registered via Google Sign-In
+        $insertBookerSql = "INSERT INTO booker (PassportNumber, Email)
+                            VALUES (:passport_number, :email)";
+        $bookerStmt = $conn->prepare($insertBookerSql);
+        $bookerStmt->bindParam(':passport_number', $passport_number);
+        $bookerStmt->bindParam(':email', $google_email);
+        $bookerStmt->execute();
+    } else {
+        // Manual registration (no email provided yet)
+        $insertBookerSql = "INSERT INTO booker (PassportNumber) VALUES (:passport_number)";
+        $bookerStmt = $conn->prepare($insertBookerSql);
+        $bookerStmt->bindParam(':passport_number', $passport_number);
+        $bookerStmt->execute();
+    }
 
     // Commit transaction
     $conn->commit();

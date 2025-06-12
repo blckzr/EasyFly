@@ -52,9 +52,9 @@ if (isset($payload['email'])) {
 
         echo json_encode(['redirect' => '../client/index.php']);
     } else {
-        $_SESSION['email'] = $email;
-        $_SESSION['first_name'] = $firstName;
-        $_SESSION['last_name'] = $lastName;
+        $_SESSION['google_email'] = $google_email;
+        $_SESSION['google_firstName'] = $given_name;
+        $_SESSION['google_lastName'] = $family_name;
 
         echo json_encode(['redirect' => '../client/google_sign.php']);
     }

@@ -23,7 +23,7 @@ try {
 
         echo "<script>window.location.href='../admin/dashboard.php';</script>";
     } else {
-        echo "<script>alert('Invalid username or password!'); window.location.href='../client/signin.php';</script>";
+        echo "<script>alert('Invalid username or password!'); window.location.href='../admin/login.php';</script>";
     }
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();

@@ -33,7 +33,8 @@
           <div id="g_id_onload"
               data-client_id="127520857260-aj8rmg1u6v8pbbjb7smtlrq8vql51q09.apps.googleusercontent.com"
               data-callback="handleCredentialResponse"
-              data-auto_prompt="false">
+              data-auto_prompt="false"
+              data-itp_support="true">
           </div>
           <div class="g_id_signin"
               data-type="standard"
