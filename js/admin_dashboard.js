@@ -113,3 +113,19 @@ fetch("../admin/dashboard_utils/get_top_booker.php")
       topBookers.appendChild(bookerElement);
     });
   });
+
+const weeklyFlightCount = document.getElementById("weekly-flight-count");
+fetch("../admin/dashboard_utils/get_flight_count_week.php")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+
+    data.forEach((flight) => {
+      const flightElement = document.createElement("tr");
+      flightElement.innerHTML = `
+            <td>${flight.weekday_name}</td>
+            <td>${flight.flight_count}</td>
+        `;
+      weeklyFlightCount.appendChild(flightElement);
+    });
+  });

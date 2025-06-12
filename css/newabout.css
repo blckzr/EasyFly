@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*,
+*::after,
+*::before {
+    border: none;
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* makes rem and px relatively same (1rem = 1px) */
+html {
+    font-size: 80.5%;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+@media (prefers-reduced-motion: no-preference){
+    html {
+        scroll-behavior: smooth;
+    } 
+}
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  border-bottom: 1px solid #ccc;
+  background-color: white;
+}
+
+.nav-right {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-right a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.nav-right a.active {
+  background-color: #f2f2f2;
+}
+
+.logo {
+  height: 50px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f8fb;
+  color: #333;
+}
+
+.navbar {
+  background: white;
+  color: white;
+  padding: 20px 40px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.airplane-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #0077cc;
+}
+
+.about-text {
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+.team {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Force 5 equal-width columns */
+  gap: 30px;
+  margin-top: 40px;
+}
+
+@media (max-width: 1000px) {
+  .team {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+
+.team-member {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.team-member img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 10px auto; /* centers image horizontally */
+  display: block;
+}
+
+/* Footer Styles - Compact Version */
+.new-footer {
+  background-color: #1a365d;
+  color: #ffffff;
+  margin-top: 40px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+}
+
+/* Left Section - Compact */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-logo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  max-width: 180px;
+}
+
+.footer-tagline {
+  font-size: 12px;
+  color: #e2e8f0;
+  font-style: italic;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-about h3,
+.footer-contact h3 {
+  font-size: 16px;
+  color: #ffcc00;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.footer-about p {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #e2e8f0;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.contact-item i {
+  color: #ffcc00;
+  width: 14px;
+  font-size: 12px;
+}
+
+.contact-item span {
+  font-size: 12px;
+  color: #e2e8f0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Middle and Right Sections - Compact */
+.footer-middle h3,
+.footer-right h3 {
+  font-size: 16px;
+  color: #ffcc00;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-links a:hover {
+  color: #ffcc00;
+}
+
+/* Footer Bottom - Compact with Visible Line */
+.footer-bottom {
+  border-top: 2px solid #4a5568;
+  padding: 15px 0;
+  background-color: #1a365d;
+}
+
+.footer-bottom-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
