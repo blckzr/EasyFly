@@ -43,7 +43,7 @@ CREATE TABLE `flight_history` (
 -- Table structure for table `bookings`
 DROP TABLE IF EXISTS `bookings`;
 CREATE TABLE `bookings` (
-  `BookingID` int NOT NULL,
+  `BookingID` int NOT NULL AUTO_INCREMENT,
   `PassportNumber` varchar(16) NOT NULL,
   `BookingDate` date DEFAULT NULL,
   `ItineraryType` varchar(6) DEFAULT NULL,

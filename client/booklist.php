@@ -1,3 +1,7 @@
+<?php
+include '../components/session_check.php'; // Ensure user is logged in
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,13 +54,13 @@
         });
 
         function fetchBookingList() {
-            const passportNumber = 'PP0090572804BH'; // Replace with actual passport number
+            const passportNumber = "<?php echo $_SESSION['passport_number']; ?>"; // Get the passport number from session
             fetch(`../client/get_booklist.php?passport=${passportNumber}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.error) {
                         console.error(data.error);
-                        document.getElementById('flight-options').innerHTML = '<p>No bookings found.</p>';
+                        document.getElementById('flight-options').innerHTML = '<p>You have not made any bookings yet. Click <a href="./booking.php">here</a> to book now.</p>';
                     } else {
                         displayBookings(data.bookings);
                     }

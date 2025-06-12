@@ -2,7 +2,8 @@
 include '../components/connect.php';
 
 $today = date('Y-m-d');
-$itinerary = isset($_GET['itinerary']) ? $_GET['itinerary'] : 'ONEWAY';
+$itinerary = isset($_GET['itinerary']) ? $_GET['itinerary'] : 'OneWay';
+$flightClass = isset($_GET['flightClass']) ? $_GET['flightClass'] : 'Economy';
 
 if ($itinerary === 'ROUND') {
     $stmt = $conn->prepare("
@@ -27,7 +28,7 @@ if ($itinerary === 'ROUND') {
     $stmt->execute([$today]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ?>
-        <div class="flight-option" onclick="proceedToPassenger('<?php echo $itinerary; ?>', '<?php echo $row['OutFlightNumber']; ?>', '<?php echo $row['RetFlightNumber']; ?>');">
+        <div class="flight-option" onclick="proceedToPassenger('<?php echo $itinerary; ?>', '<?php echo $flightClass ?>', '<?php echo $row['OutFlightNumber']; ?>', '<?php echo $row['OutFlightDate']; ?>', '<?php echo $row['RetFlightNumber']; ?>', '<?php echo $row['RetFlightDate']; ?>');">
             <div class="flight-header">
                 <div class="flight-number"><?php echo htmlspecialchars($row['OutFlightNumber']); ?> &rarr; <?php echo htmlspecialchars($row['RetFlightNumber']); ?></div>
                 <div class="flight-price">--</div>
@@ -59,7 +60,7 @@ if ($itinerary === 'ROUND') {
     $stmt->execute([$today]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     ?>
-        <div class="flight-option" onclick="proceedToPassenger('<?php echo $itinerary; ?>', '<?php echo $row['FlightNumber']; ?>', null);">
+        <div class="flight-option" onclick="proceedToPassenger('<?php echo $itinerary; ?>', '<?php echo $flightClass ?>', '<?php echo $row['FlightNumber']; ?>', '<?php echo $row['FlightDate']; ?>', null, null);">
             <div class="flight-header">
                 <div class="flight-number"><?php echo htmlspecialchars($row['FlightNumber']); ?></div>
                 <div class="flight-price">--</div>
