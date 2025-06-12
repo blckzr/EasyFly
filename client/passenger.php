@@ -2,8 +2,11 @@
 include '../components/connect.php'; // Include the database connection 
 
 $itinerary = isset($_GET['itinerary']) ? $_GET['itinerary'] : 'ONEWAY';
+$flightClass = isset($_GET['flightClass']) ? $_GET['flightClass'] : 'ECONOMY';
 $flightNumber = isset($_GET['flightNumber']) ? $_GET['flightNumber'] : '';
-$roundFlightNumber = isset($_GET['roundFlightNumber']) ? $_GET['roundFlightNumber'] : '';
+$flightDate = isset($_GET['flightDate']) ? $_GET['flightDate'] : '';
+$retFlightNumber = isset($_GET['retFlightNumber']) ? $_GET['retFlightNumber'] : '';
+$retFlightDate = isset($_GET['retFlightDate']) ? $_GET['retFlightDate'] : '';
 
 ?>
 <!DOCTYPE html>
@@ -180,14 +183,20 @@ $roundFlightNumber = isset($_GET['roundFlightNumber']) ? $_GET['roundFlightNumbe
                 }
 
                 const itinerary = "<?php echo $itinerary; ?>";
+                const flightClass = "<?php echo $flightClass; ?>";
                 const flightNumber = "<?php echo $flightNumber; ?>";
-                const roundFlightNumber = "<?php echo $roundFlightNumber; ?>";
+                const flightDate = "<?php echo $flightDate; ?>";
+                const retFlightNumber = "<?php echo $retFlightNumber; ?>";
+                const retFlightDate = "<?php echo $retFlightDate; ?>";
 
                 // Redirect to the payment page with passenger data
                 const queryParams = new URLSearchParams({
                     itinerary,
+                    flightClass,
                     flightNumber,
-                    roundFlightNumber,
+                    flightDate,
+                    retFlightNumber,
+                    retFlightDate,
                     passengers: JSON.stringify(passengers)
                 }).toString()
 

@@ -111,7 +111,7 @@
             <label class="form-label">
               <i class="fas fa-chair"></i> Class
             </label>
-            <select class="form-select class-select">
+            <select class="form-select class-select" id="flight-class">
               <option value="ECONOMY">Economy</option>
               <option value="PREMIUM_ECONOMY">Premium Economy</option>
               <option value="BUSINESS">Business</option>
@@ -133,10 +133,17 @@
 
         <script>
           // Helper to fetch and update flight options
-          function updateFlightOptions(itinerary) {
+          function updateFlightOptions(itinerary, flightClass) {
             const flightOptionsDiv = document.getElementById('flight-options');
             flightOptionsDiv.innerHTML = '<div style="padding:1em;text-align:center;">Loading flights...</div>';
-            fetch('booking_flights.php?itinerary=' + encodeURIComponent(itinerary))
+
+            if (flightClass === undefined) {
+              flightClass = document.getElementById('flight-class').value;
+            }
+
+            const url = `booking_flights.php?itinerary=${itinerary}&flightClass=${flightClass}`;
+
+            fetch(url)
               .then(res => res.text())
               .then(html => {
                 flightOptionsDiv.innerHTML = html;
@@ -154,14 +161,21 @@
               });
             });
           });
+
+          document.getElementById('flight-class').addEventListener('change', function() {
+            const itinerary = document.querySelector('input[name="itinerary"]:checked').value;
+            console.log('Flight class changed:', this.value);
+            console.log('Current itinerary:', itinerary);
+            updateFlightOptions(itinerary, this.value);
+          });
         </script>
         <script>
           options = document.querySelectorAll('.flight-option');
 
-          function proceedToPassenger(itinerary, flightNumber, retFlightNumber) {
-            let url = `passenger.php?itinerary=${itinerary}&flightNumber=${flightNumber}`;
+          function proceedToPassenger(itinerary, flightClass, flightNumber, flightDate, retFlightNumber, retFlightDate) {
+            let url = `passenger.php?itinerary=${itinerary}&flightClass=${flightClass}&flightNumber=${flightNumber}&flightDate=${flightDate}`;
             if (retFlightNumber) {
-              url += `&retFlightNumber=${retFlightNumber}`;
+              url += `&retFlightNumber=${retFlightNumber}&retFlightDate=${retFlightDate}`;
             }
             window.location.href = url;
           }
