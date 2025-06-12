@@ -88,3 +88,6 @@ foreach ($passengers as $index => $p) {
         $p['passportNumber']
     ]);
 }
+
+header("Location: ../client/booklist.php");
+exit();
