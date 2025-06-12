@@ -1,12 +1,13 @@
 <?php
-    $curr_page = 'home'; // Set the current page for active link highlighting
-    include '../components/connect.php'; // Include the database connection 
-    include '../components/header.php';
-    include '../components/session_check.php'; 
-  ?>
+$curr_page = 'home'; // Set the current page for active link highlighting
+include '../components/connect.php'; // Include the database connection 
+include '../components/header.php';
+include '../components/session_check.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +17,10 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/newhome.css">
 </head>
+
 <body>
 
   <!-- Hero Section -->
@@ -33,7 +36,7 @@
   <section class="latest-deals">
     <h2 class="section-title">Our Latest Deals</h2>
     <p class="section-subtitle">Discover amazing flight deals and offers.</p>
-    
+
     <!-- Enhanced Deals Filter with Counter -->
     <div class="deals-filter">
       <button class="filter-btn active" data-filter="all">
@@ -49,7 +52,7 @@
         Middle East <span class="filter-count">(1)</span>
       </button>
     </div>
-    
+
     <!-- Swiper Slider Implementation -->
     <div class="deals-section-wrapper">
       <div class="swiper deals-swiper">
@@ -91,7 +94,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Paris -->
           <div class="swiper-slide" data-category="europe">
             <div class="deal-card enhanced" data-deal-id="paris">
@@ -129,7 +132,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Bangkok -->
           <div class="swiper-slide" data-category="asia">
             <div class="deal-card enhanced" data-deal-id="bangkok">
@@ -167,7 +170,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Maldives -->
           <div class="swiper-slide" data-category="asia">
             <div class="deal-card enhanced" data-deal-id="maldives">
@@ -205,7 +208,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Rome -->
           <div class="swiper-slide" data-category="europe">
             <div class="deal-card enhanced" data-deal-id="rome">
@@ -243,7 +246,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Tokyo -->
           <div class="swiper-slide" data-category="asia">
             <div class="deal-card enhanced" data-deal-id="tokyo">
@@ -282,7 +285,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Add navigation arrows -->
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -290,7 +293,7 @@
         <div class="swiper-pagination"></div>
       </div>
     </div>
-    
+
     <!-- Deal Comparison Tool -->
     <div class="deal-comparison" id="deal-comparison">
       <div class="comparison-header">
@@ -309,10 +312,10 @@
       <div class="promo-text">
         <h2>Why Choose EasyFly?</h2>
         <p>We offer the best flight deals, easy booking, and exceptional customer service.
-          With EasyFly, you enjoy a user-friendly platform that makes booking flights simple and quick. 
+          With EasyFly, you enjoy a user-friendly platform that makes booking flights simple and quick.
           Our extensive network of destinations ensures you find the perfect trip, whether you're traveling for business or leisure.</p>
         <p>Join millions of satisfied travelers who trust EasyFly for their flight bookings.</p>
-        
+
         <!-- Feature Icons -->
         <div class="promo-features">
           <div class="feature">
@@ -328,7 +331,7 @@
             <span>Secure Booking</span>
           </div>
         </div>
-        
+
         <a href="#" class="learn-btn">Learn more</a>
       </div>
       <div class="promo-image">
@@ -466,12 +469,12 @@
           <img src="../img/newlogo.png" alt="EasyFly Logo" class="footer-logo" id="footer-logo">
           <p class="footer-tagline">Your Travel Partner</p>
         </div>
-        
+
         <div class="footer-about">
           <h3>About Us</h3>
           <p>We want to help bring talented travelers and unique destinations together with the best flight deals and exceptional service.</p>
         </div>
-        
+
         <div class="footer-contact">
           <h3>Contact Us</h3>
           <div class="contact-item">
@@ -543,10 +546,10 @@
         <h2>Contact Us</h2>
         <button class="close-modal" id="close-contact-btn">&times;</button>
       </div>
-      
+
       <div class="modal-body">
         <p>We'd love to hear from you! Please fill out the form below and our team will get back to you as soon as possible.</p>
-        
+
         <form id="contact-form" class="contact-form">
           <div class="form-row">
             <div class="form-group">
@@ -560,7 +563,7 @@
               <span class="error-message" id="email-error"></span>
             </div>
           </div>
-          
+
           <div class="form-group">
             <label for="contact-subject">Subject *</label>
             <select id="contact-subject" name="subject" required>
@@ -573,13 +576,13 @@
             </select>
             <span class="error-message" id="subject-error"></span>
           </div>
-          
+
           <div class="form-group">
             <label for="contact-message">Message *</label>
             <textarea id="contact-message" name="message" rows="5" required></textarea>
             <span class="error-message" id="message-error"></span>
           </div>
-          
+
           <div class="form-actions">
             <button type="submit" class="submit-btn" id="contact-submit-btn">
               <span class="btn-text">Send Message</span>
@@ -588,7 +591,7 @@
             <button type="button" class="cancel-btn" id="cancel-contact-btn">Cancel</button>
           </div>
         </form>
-        
+
         <div id="contact-success" class="success-message">
           <div class="success-icon">✓</div>
           <h3>Thank you for contacting us!</h3>
@@ -606,7 +609,7 @@
         <h2 id="deal-modal-title">Flight Deal Details</h2>
         <button class="close-modal" id="close-deal-btn">&times;</button>
       </div>
-      
+
       <div class="modal-body">
         <div class="deal-modal-layout">
           <div class="deal-modal-image">
@@ -617,7 +620,7 @@
               <span>4.8</span>
             </div>
           </div>
-          
+
           <div class="deal-modal-info">
             <div class="deal-modal-details">
               <div class="detail-item">
@@ -649,7 +652,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="deal-modal-description">
               <h3>About this deal</h3>
               <p id="deal-modal-description">Experience the beauty and culture of this amazing destination with our special flight deal. This offer includes direct flights, flexible booking options, and competitive prices.</p>
@@ -660,7 +663,7 @@
                 <li><i class="fas fa-check"></i> Seat selection included</li>
               </ul>
             </div>
-            
+
             <div class="deal-modal-cta">
               <button class="book-now-btn">Book Now</button>
               <button class="save-deal-btn" id="save-deal-btn">
@@ -754,4 +757,5 @@
   <!-- Custom Scripts -->
   <script src="../js/newhome.js"></script>
 </body>
+
 </html>

@@ -5,6 +5,10 @@ body {
   background-color: #f3f4f6;
 }
 
+body > * {
+  margin: 0 auto;
+}
+
 div#background {
   width: 100dvw;
   height: 100dvh;
