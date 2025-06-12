@@ -8,7 +8,7 @@
       <a href="../client/index.php" class="<?php echo ($curr_page == 'home') ? 'active' : ''; ?>">Home</a>
       <a href="../client/booking.php" class="<?php echo ($curr_page == 'book') ? 'active' : ''; ?>">Book</a>
       <a href="../client/booklist.php" class="<?php echo ($curr_page == 'book_list') ? 'active' : ''; ?>">View Bookings</a>
-      <a href="../client/about.php" class="<?php echo ($curr_page == 'about') ? 'active' : ''; ?>">About</a>
+      <a href="../client/newabout.php" class="<?php echo ($curr_page == 'about') ? 'active' : ''; ?>">About</a>
     </div>
     <div class="right-section">
       <img class="logo" src="../img/newlogo.png" alt="Logo" />
