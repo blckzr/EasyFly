@@ -1,14 +1,3 @@
-const flights = [
-  {
-    flightNumber: "MNLJPN-1120",
-    date: "5/21/2025",
-    time: "11:00:00 AM",
-    source: "Manila, PH",
-    destination: "Tokyo, Japan",
-    status: "Pending",
-  },
-]
-
 function filterFlights() {
   const dateFilter = document.querySelector('select[aria-label="Date"]').value
   const timeFilter = document.querySelector('select[aria-label="Time"]').value
