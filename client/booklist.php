@@ -121,7 +121,7 @@ include '../components/session_check.php'; // Ensure user is logged in
                         </div>
                         <div class="flight-time">
                             <div class="time">${booking.ArrTime || '--'}</div>
-                            <div class="airport">${booking.ArrTo || booking.DepTo}</div>
+                            <div class="airport">${booking.ArrFrom || booking.DepTo}</div>
                         </div>
                     </div>`;
                 flightOptionsDiv.appendChild(flightOption);
@@ -156,7 +156,7 @@ include '../components/session_check.php'; // Ensure user is logged in
                         </div>
                         <div class="flight-time">
                             <div class="time">${flight.ArrTime || '--'}</div>
-                            <div class="airport">${flight.ArrTo || flight.DepTo}</div>
+                            <div class="airport">${flight.ArrFrom || flight.DepTo}</div>
                         </div>
                     </div>`;
                 bookingOptionsDiv.appendChild(flightOption);
