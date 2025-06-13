@@ -29,7 +29,6 @@ if ($passportNumber !== $sessionPassport) {
     }
 }
 
-// Now proceed with the main booking query (you said to keep this unchanged)
 $sql = "SELECT
             b.*,
             dfh.FlightTime as DepTime,
