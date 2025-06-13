@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2025 at 03:42 PM
+-- Generation Time: Jun 12, 2025 at 06:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,6 +36,13 @@ CREATE TABLE `staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`Admin_ID`, `First_Name`, `Last_Name`, `Username`, `Password`) VALUES
+(13, 'Admin', 'Admin', 'Admin', '$2y$10$vatP6zi6eMKEhhkzKIn8qeE75ZWwYqBgmWtreZmmor3k26jOCY16W');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -53,7 +60,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `Admin_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Admin_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
