@@ -44,6 +44,13 @@ div#flight-options > p {
   margin-bottom: 1.5rem;
 }
 
+div#booking-options > p {
+  font-size: 1.5rem;
+  color: #374151;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 /* Enhanced Flight Options */
 .flight-option {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
