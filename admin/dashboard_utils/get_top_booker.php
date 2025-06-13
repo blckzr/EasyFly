@@ -2,11 +2,19 @@
 header('Content-Type: application/json');
 include '../../components/connect.php'; // Include the database connection
 
-$sql = "SELECT b.PassportNumber, COUNT(*) as total_bookings
-    FROM bookings b
-    GROUP BY b.PassportNumber
-    ORDER BY total_bookings DESC
-    LIMIT 5";
+$sql = 
+    "WITH RankedBookings AS (
+        SELECT
+            b.PassportNumber,
+            COUNT(*) AS total_bookings,
+            DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS rank
+        FROM bookings b
+        GROUP BY b.PassportNumber
+    )
+    SELECT PassportNumber, total_bookings
+    FROM RankedBookings
+    WHERE rank <= 5
+    ORDER BY total_bookings DESC;";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();

@@ -3,11 +3,19 @@ header('Content-Type: application/json');
 include '../../components/connect.php';
 
 $sql = "
-    SELECT FlightTo, COUNT(*) AS count 
-    FROM flight_history 
-    GROUP BY FlightTo 
-    ORDER BY count DESC 
-    LIMIT 5;
+    WITH RankedDestinations AS (
+        SELECT
+            FlightTo,
+            COUNT(*) AS count,
+            DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS rank
+        FROM flight_history
+        GROUP BY FlightTo
+    )
+
+    SELECT FlightTo, count
+    FROM RankedDestinations
+    WHERE rank <= 5
+    ORDER BY count DESC;
 ";
 
 $stmt = $conn->prepare($sql);

@@ -100,7 +100,7 @@ div.table-container {
     height: 30rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     overflow-x: auto;
 }
