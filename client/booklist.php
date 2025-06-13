@@ -101,6 +101,7 @@ include '../components/session_check.php'; // Ensure user is logged in
                 const flightOption = document.createElement('div');
                 flightOption.className = 'flight-option';
                 flightOption.innerHTML = `
+                    <span style="display: none;">${booking.BookingID}</span>
                     <div class="flight-header">
                         <div class="flight-number">${booking.DepFlightNumber} &rarr; ${booking.ArrFlightNumber || '--'}</div>
                         <div class="flight-price">--</div>
