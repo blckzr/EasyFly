@@ -7,6 +7,7 @@
   <title>EasyFly</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="../css/signin.css">
+  <link rel="stylesheet" href="../css/date.css">
 
   <script src="../js/googleJS.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
