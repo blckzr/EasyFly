@@ -101,10 +101,10 @@ include '../components/session_check.php'; // Ensure user is logged in
                 const flightOption = document.createElement('div');
                 flightOption.className = 'flight-option';
                 flightOption.innerHTML = `
-                    <span style="display: none;">${booking.BookingID}</span>
+                    <a href="viewsummary.php?BookingID=${booking.BookingID}">
                     <div class="flight-header">
                         <div class="flight-number">${booking.DepFlightNumber} &rarr; ${booking.ArrFlightNumber || '--'}</div>
-                        <div class="flight-price">--</div>
+                        <div class="flight-price">${booking.BookingID}</div>
                     </div>
                     <div class="flight-details">
                         <div class="flight-time">
@@ -124,7 +124,8 @@ include '../components/session_check.php'; // Ensure user is logged in
                             <div class="time">${booking.ArrTime || '--'}</div>
                             <div class="airport">${booking.ArrFrom || booking.DepTo}</div>
                         </div>
-                    </div>`;
+                    </div>
+                    </a>`;
                 flightOptionsDiv.appendChild(flightOption);
             });
         }
@@ -137,9 +138,10 @@ include '../components/session_check.php'; // Ensure user is logged in
                 const flightOption = document.createElement('div');
                 flightOption.className = 'flight-option';
                 flightOption.innerHTML = `
+                    <a href="viewsummary.php?BookingID=${flight.BookingID}">
                     <div class="flight-header">
                         <div class="flight-number">${flight.DepFlightNumber} &rarr; ${flight.ArrFlightNumber || '--'}</div>
-                        <div class="flight-price">--</div>
+                        <div class="flight-price">${flight.BookingID}</div>
                     </div>
                     <div class="flight-details">
                         <div class="flight-time">
@@ -159,7 +161,8 @@ include '../components/session_check.php'; // Ensure user is logged in
                             <div class="time">${flight.ArrTime || '--'}</div>
                             <div class="airport">${flight.ArrFrom || flight.DepTo}</div>
                         </div>
-                    </div>`;
+                    </div>
+                    </a>`;
                 bookingOptionsDiv.appendChild(flightOption);
             });
         }
