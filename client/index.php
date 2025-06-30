@@ -27,7 +27,7 @@ include '../components/header.php';
     <div class="hero-text">
       <h1>Experience the <br> World with Ease</h1>
       <p>Travel made simple — book flights whenever <br> and wherever you need.</p>
-      <a href="#" class="get-started">Get Started</a>
+      <a href="booking.php" class="get-started">Get Started</a>
     </div>
   </section>
 
@@ -331,7 +331,7 @@ include '../components/header.php';
           </div>
         </div>
 
-        <a href="#" class="learn-btn">Learn more</a>
+        <a href="newabout.php" class="learn-btn">Learn more</a>
       </div>
       <div class="promo-image">
         <img src="../img/promopic.jpg" alt="Airport view">
@@ -452,7 +452,7 @@ include '../components/header.php';
           <p>Don't miss out on these amazing flight deals. Book now and save up to 35% on your next trip!</p>
         </div>
         <div class="banner-cta">
-          <a href="#" class="book-now-banner-btn">Book Now</a>
+          <a href="booking.php" class="book-now-banner-btn">Book Now</a>
           <span class="banner-offer">Limited Time Offer!</span>
         </div>
       </div>
@@ -491,10 +491,10 @@ include '../components/header.php';
       <div class="footer-middle">
         <h3>Information</h3>
         <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Book</a></li>
-          <li><a href="#">View Bookings</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="booking.php">Book</a></li>
+          <li><a href="booklist.php">View Bookings</a></li>
+          <li><a href="newabout.php">About</a></li>
         </ul>
       </div>
 

@@ -31,10 +31,10 @@
         <div class="footer-middle">
             <h3>Information</h3>
             <ul class="footer-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Book</a></li>
-                <li><a href="#">View Bookings</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="../client/index.php">Home</a></li>
+                <li><a href="../client/booking.php">Book</a></li>
+                <li><a href="../client/booklist.php">View Bookings</a></li>
+                <li><a href="../client/newabout.php">About</a></li>
             </ul>
         </div>
 
