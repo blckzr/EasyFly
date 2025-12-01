@@ -1,5 +1,5 @@
 <?php
-include '../components/connect.php'; // Include the database connection 
+include '../components/connect.php';
 
 $itinerary = isset($_GET['itinerary']) ? $_GET['itinerary'] : 'ONEWAY';
 $flightClass = isset($_GET['flightClass']) ? $_GET['flightClass'] : 'ECONOMY';
