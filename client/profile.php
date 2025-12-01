@@ -21,8 +21,8 @@ include '../components/session_check.php';
 
 <body>
     <?php
-    $curr_page = 'profile'; // Set the current page for active link highlighting
-    include '../components/connect.php'; // Include the database connection 
+    $curr_page = 'profile';
+    include '../components/connect.php';
     include '../components/header.php';
     ?>
     <div id="background"></div>
